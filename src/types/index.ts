@@ -35,9 +35,16 @@ export interface ExperienceItem {
   type: ExperienceType;
   title: string;
   organization: string;
-  startDate: ISODate;
+  startDate?: ISODate;
   endDate?: ISODate;
-  description: string;
+  description?: string;
+  skills?: string[];
+}
+
+/** Each value is null if the user hasn't answered. */
+export interface WorkAuthorization {
+  authorizedToWork: boolean | null;
+  needsSponsorship: boolean | null;
 }
 
 export interface UserProfile extends BaseRecord {
@@ -54,10 +61,10 @@ export interface UserProfile extends BaseRecord {
   remotePreference: RemotePreference;
   /** e.g. "Summer 2027, full-time" */
   availability: string;
-  /** Hourly, in USD. */
+  /** Lowest acceptable hourly pay, in USD. */
   salaryExpectation?: number;
   /** Used only to check a listing's stated requirement. */
-  workAuthorization: string;
+  workAuthorization: WorkAuthorization;
   careerGoals: string;
   resumeText?: string;
   portfolioUrl?: string;
@@ -70,18 +77,51 @@ export interface UserProfile extends BaseRecord {
 export const WORK_MODES = ["remote", "in_person", "hybrid"] as const;
 export type WorkMode = (typeof WORK_MODES)[number];
 
+export interface Compensation {
+  hourlyMin?: number;
+  hourlyMax?: number;
+  note: string;
+}
+
+export const QUALIFICATION_TYPES = ["skill", "education", "experience", "other"] as const;
+export type QualificationType = (typeof QUALIFICATION_TYPES)[number];
+
+export interface Qualification {
+  /** The text people read. */
+  label: string;
+  type: QualificationType;
+  /** Lowercase terms that satisfy it. */
+  keywords: string[];
+  /** True if a student could reasonably learn it before starting. */
+  trainable: boolean;
+}
+
+export const EXPERIENCE_LEVELS = ["none", "some", "significant"] as const;
+export type ExperienceLevel = (typeof EXPERIENCE_LEVELS)[number];
+
+/**
+ * Mock data rules: set mock deadlines relative to today so listings don't
+ * expire before the demo. The one demo user is Maya Rivera in
+ * src/data/resume-interview/mock-profile-maya.json.
+ */
 export interface Internship extends BaseRecord {
   company: string;
   title: string;
   location: string;
   workMode: WorkMode;
   /** Only if listed. */
-  compensation?: string;
-  requiredQualifications: string[];
-  preferredQualifications: string[];
+  compensation?: Compensation;
+  requiredQualifications: Qualification[];
+  preferredQualifications: Qualification[];
   applicationDeadline?: ISODate;
   applicationUrl: string;
   industry: string;
+  /** Lowercase interest tags. */
+  careerTags?: string[];
+  /** Lowercase. Empty or missing means any major. */
+  relevantMajors?: string[];
+  experienceLevel?: ExperienceLevel;
+  sponsorshipAvailable?: boolean;
   description: string;
   /** Where the listing came from. */
   source: string;
@@ -94,31 +134,54 @@ export interface Internship extends BaseRecord {
 // MatchScore (Member 2)
 // ---------------------------------------------------------------------------
 
-export const MATCH_FACTOR_NAMES = [
+export const MATCH_FACTOR_KEYS = [
   "skills",
-  "academic_background",
-  "career_interests",
-  "experience_level",
+  "academics",
+  "interests",
+  "experience",
+  /** Covers both location and remote preference. */
   "location",
-  "work_authorization",
-  "deadline_urgency",
+  "workAuthorization",
+  "deadline",
   "compensation",
-  "work_mode",
 ] as const;
-export type MatchFactorName = (typeof MATCH_FACTOR_NAMES)[number];
+export type MatchFactorKey = (typeof MATCH_FACTOR_KEYS)[number];
 
+/** Weights across all factors add up to 100. */
 export interface MatchFactor {
-  name: MatchFactorName;
-  /** 0 to 100 */
-  score: number;
+  key: MatchFactorKey;
+  label: string;
+  /** Maximum points for this factor. */
+  weight: number;
+  points: number;
   explanation: string;
 }
 
-export type MissingQualificationSeverity = "critical" | "trainable";
+export const MATCH_LABELS = ["Strong match", "Good match", "Possible match", "Weak match"] as const;
+export type MatchLabel = (typeof MATCH_LABELS)[number];
+
+export const ELIGIBILITY_STATUSES = ["eligible", "blocked", "expired"] as const;
+export type EligibilityStatus = (typeof ELIGIBILITY_STATUSES)[number];
+
+export interface Eligibility {
+  status: EligibilityStatus;
+  reasons: string[];
+}
+
+export interface MatchedQualification {
+  label: string;
+  required: boolean;
+  evidence: string;
+}
+
+export const MISSING_SEVERITIES = ["critical", "trainable", "nice_to_have"] as const;
+export type MissingQualificationSeverity = (typeof MISSING_SEVERITIES)[number];
 
 export interface MissingQualification {
-  qualification: string;
+  label: string;
+  required: boolean;
   severity: MissingQualificationSeverity;
+  suggestion: string;
 }
 
 export interface MatchScore extends BaseRecord {
@@ -126,14 +189,21 @@ export interface MatchScore extends BaseRecord {
   internshipId: string;
   /** 0 to 100 */
   score: number;
+  label: MatchLabel;
+  eligibility: Eligibility;
   factors: MatchFactor[];
-  matchedRequirements: string[];
+  matchedQualifications: MatchedQualification[];
   missingQualifications: MissingQualification[];
-  recommendedNextStep: string;
+  /** Facts: why it matches. */
+  reasons: string[];
+  /** Recommendations: what to do next. */
+  nextSteps: string[];
 }
 
 // ---------------------------------------------------------------------------
 // ResumeDraft / CoverLetterDraft (Member 3)
+// These and InterviewPlan may also use the optional extras in section 4 of
+// docs/resume-interview-spec.md (Member 3 adds those types in their own module).
 // ---------------------------------------------------------------------------
 
 export const DRAFT_STATUSES = ["draft", "approved", "rejected"] as const;

@@ -31,9 +31,9 @@ Each person/agent only edits their own row.
 
 | Person | Working on now | Status | Branch | Last update |
 | --- | --- | --- | --- | --- |
-| Jensen | Member 1: product, research and documentation | Ready for review | `feature/product-docs` | 2026-11-05 |
+| Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
 | laurentjedi | | Not started | | |
-| kcarrsdsu | | Not started | | |
+| kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
 | tommybaird26-star (Member 5) | Next.js app skeleton, shared types, shared UI, secrets test | Ready for review | `claude/epic-hypatia-t2ya4k` | 2026-11-06 |
 | BadoGoat1 | | Not started | | |
 
@@ -56,6 +56,8 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 | Date | Decision | Why | Who |
 | --- | --- | --- | --- |
+| 2026-11-05 | After reviewing PR #8, Next.js with TypeScript stays. Use the App Router in `src/app`, not a `src/pages` folder. Shared logic goes in `src/services` | PR #8 proposed plain JavaScript. Keeping one stack avoids a rival setup, and most of its logic is plain functions that can move across | Jensen (Member 1). Member 5 still needs to confirm |
+| 2026-11-05 | `docs/data-definitions.md` updated: takes Member 2's `Qualification` and `MatchScore` shapes, and approves Member 3's optional extras. Member 3's Maya is the one demo user | Member 2's matching crashed on Member 3's data, so everyone needs one shape | Jensen (Member 1) |
 | 2026-11-05 | Tech stack: Next.js with TypeScript in one app. Tests use Vitest. Internships come from labeled mock data, with no database at first. AI calls and keys stay on the server. Host on Vercel | One codebase for all five people, and shared types match `docs/data-definitions.md` | Jensen (Member 1). Member 5 still needs to confirm |
 | 2026-11-06 | Member 5 confirms the Next.js stack. Versions: Next 16.4.5, React 19, TypeScript 5, Vitest 5.1.0 (older Next 15/Vitest 3 had critical `npm audit` findings). Shared types live in `src/types/index.ts`, imported as `@/types` | One app everyone builds into; 0 known vulnerabilities | tommybaird26-star (Member 5) |
 | 2026-11-05 | Jensen is Member 1 | Claimed the product, research and documentation workstream | Jensen |
@@ -64,10 +66,14 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 ## Questions for each other
 
 - _Leave questions for your teammates here instead of editing their handoff files._
-- 2026-11-06 (tommybaird26-star → Laurent): Your Member 2 branch `claude/practical-gauss-xpx31v` uses plain JS + `node --test`, but the agreed stack is Next.js + TypeScript + Vitest, and the skeleton is on `claude/epic-hypatia-t2ya4k`. Can we move your services/data into `src/services/` and `src/data/` as TypeScript using `@/types`? Merging as-is will conflict on `package.json` and `README.md`. Happy to help port.
+- 2026-11-05 (Jensen, for Laurent): PR #8 is good work but is on hold. After the Next.js setup is on `main`, please: (1) move your logic into the new app and drop `scripts/serve.js`; (2) rename fields to match `docs/data-definitions.md` (`deadline` to `applicationDeadline`, `lastChecked` to `lastCheckedAt` as a timestamp, `in-person` to `in_person`, `any` to `no_preference`, `minHourlyRate` to `salaryExpectation`, `nice-to-have` to `nice_to_have`), and add `userProfileId` to `MatchScore`; (3) use Member 3's Maya; (4) set mock deadlines relative to today; (5) fix major matching so "CS" doesn't match "statistics", with a test; (6) move your notes into `handoffs/HANDOFF-laurentjedi.md`.
+- 2026-11-05 (Jensen, for kcarrsdsu): Your optional extras are approved. Please update `src/data/resume-interview/` and your spec for the new `Qualification`, `Compensation` and `WorkAuthorization` shapes. `relatedVersion?` is still Member 4's call.
+- 2026-11-05 (Jensen): Proposal: lead with "provably true" instead of "complete workflow," and add Proof Receipts and Gap-to-Proof Sprints to the prototype. Reasoning is in `docs/competitor-research.md` and `docs/standout-ideas.md`. Please reply here with yes, no or changes.
+- 2026-11-05 (Jensen): Everyone: pick two students to interview using `docs/validation-kit.md`. Which school's career center should we approach, and which tools does it already provide?
 - 2026-11-05 (Jensen): Tech stack is recorded under Decisions. Member 5, please confirm or object, then set up the shared app so everyone can branch from it.
 - 2026-11-05 (Jensen): Everyone please review `docs/data-definitions.md` before writing features, and object here if a name or field won't work for your workstream.
 - 2026-11-06 (Laurent): The team is now 5 people. Who takes Members 1–5? Each person should add a `handoffs/HANDOFF-<name>.md` and a row in the table above. Also: we still need to pick a tech stack (repo has no code yet) — suggest Member 1 + Member 5 decide before anyone writes features.
+- 2026-11-06 (kcarrsdsu, Member 3): Please review `docs/resume-interview-spec.md`. It uses `docs/data-definitions.md` names exactly and only ADDS optional fields (§4, marked [PROPOSED]). Jensen: OK those extras? Member 2: OK sharing `src/data/resume-interview/skill-aliases.json` for matching? Member 4: OK adding optional `relatedVersion?` to `ApprovalRequest` (§5)? Member 5: Member 3 code will wait for the Next.js skeleton on `main`.
 
 ## Project log
 
@@ -75,9 +81,13 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-06 | tommybaird26-star | Next.js + TS + Vitest app skeleton: shared types, nav/layout, state components, security headers, secrets test, README setup | `src/`, `tests/`, config files, `README.md`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-06 | tommybaird26-star | On hold until teammates decide tech stack; no code changes | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`
 - 2026-11-06 | tommybaird26-star | Claimed Member 5 (integration/security/testing/demo); inspected repo, no code yet | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`, branch `claude/epic-hypatia-t2ya4k`
+- 2026-11-06 | kcarrsdsu | Member 3 spec (data shapes, no-fabrication rules, test plan) + mock data (Maya, 4 fictional internships, interview question bank, skill aliases) | `docs/resume-interview-spec.md`, `src/data/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-05 | Jensen | Reviewed PRs #7 and #8, merged #7, held #8, and updated the shared data definitions | `docs/data-definitions.md`, `HANDOFF.md`
+- 2026-11-05 | Jensen | Added competitor research, standout ideas and validation kit, and updated the business case | `docs/`, `README.md`, branch `jensen/market-research`
 - 2026-11-05 | Jensen | Recorded the tech stack decision | `HANDOFF.md`, `README.md`, `docs/project-overview.md`
 - 2026-11-05 | Jensen | Wrote product overview, business case, user stories and shared data definitions, and updated the README | `docs/`, `README.md`, branch `feature/product-docs`
 - 2026-11-05 | Jensen | Merged Laurent's project brief and start-up guide into main | `docs/project-brief.md`, `HANDOFF.md`

@@ -2,7 +2,7 @@
 
 Owner: Member 1 (Jensen).
 
-**How to read this:** nothing here has been tested with customers yet. There are no market-size figures or prices because we have not sourced any, and any added later must link to a source.
+**How to read this:** nothing here has been tested with customers yet. There are no market-size figures or prices because we have not sourced any, and any added later must link to a source. Sourced market evidence is in `docs/competitor-research.md`.
 
 ## The problem
 
@@ -30,7 +30,7 @@ Job boards mostly list opportunities, and résumé tools mostly generate documen
 - The student approves every consequential step.
 - It is built to keep applications truthful, and flags any claim it cannot find in the student's own material.
 
-**Competitor check still to do:** this comparison comes from the brief and hasn't been checked. Before the pitch, compare at least three real products, including whatever career tools our own university already provides. That last one is the first question a career center will ask.
+**Competitor check:** a first pass is in `docs/competitor-research.md`, and it found that the "complete workflow" advantage is weaker than this section suggests, because Simplify already offers much of it for free. A stronger lead message is proposed in `docs/standout-ideas.md`. We still need to check which tools our own university provides, because that is the first question a career center will ask.
 
 ## Business model
 
@@ -72,9 +72,9 @@ The brief asks us to show how the prototype could measure results. The prototype
 | Student interviews | 5 to 10 | Not started |
 | Students trying the prototype | 3 to 5 | Not started |
 | Career-center conversation | At least 1 | Not started |
-| Competitor comparison | At least 3 products | Not started |
+| Competitor comparison | At least 3 products | First pass done from web research. Hands-on testing not started |
 
-Real quotes from students and a career center will make a stronger case than any market estimate.
+Real quotes from students and a career center will make a stronger case than any market estimate. Scripts and targets for gathering this evidence are in `docs/validation-kit.md`.
 
 ## Questions judges are likely to ask
 
@@ -82,6 +82,7 @@ Real quotes from students and a career center will make a stronger case than any
 | --- | --- |
 | Who pays? | Universities and career centers first, because they have budgets and care about outcomes |
 | Why wouldn't a student just use ChatGPT? | A chatbot doesn't hold the whole process together: tracking, deadlines, consistent profile use, approvals and checks for invented claims |
+| What about Simplify or Handshake? | Simplify helps students apply faster, and Handshake connects them with employers. We focus on proving an application is true, and we'd work alongside the tools a campus already has |
 | What stops it from lying on a résumé? | It flags claims it can't find in the student's material, and nothing is final until the student approves |
 | Is the data real? | The prototype uses clearly labeled mock data, and the design allows real sources later |
 | How do you know students want this? | **We need the evidence above to answer this honestly** |

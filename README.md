@@ -25,6 +25,9 @@ This is our shared project folder for our class agentic AI build. Five people, e
 | `docs/business-case.md` | Customers, business model, KPIs and evidence still needed |
 | `docs/user-stories.md` | Stories and acceptance criteria |
 | `docs/data-definitions.md` | The shared data names everyone builds against |
+| `docs/competitor-research.md` | Competitors and sourced market evidence |
+| `docs/standout-ideas.md` | Proposed ideas that set us apart |
+| `docs/validation-kit.md` | Scripts and targets for testing with real people |
 
 ## Folder layout
 
