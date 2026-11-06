@@ -4,7 +4,7 @@ The single place to see where the whole project stands. Agents update this at th
 
 **Project goal:** CareerLaunch Agent — an approval-based agentic assistant that guides college students from internship discovery through matching, résumé/cover-letter drafts, application tracking, and interview prep. Full brief: `docs/project-brief.md`.
 **Due date:** _YYYY-MM-DD_
-**Last updated:** 2026-11-06 by Laurent
+**Last updated:** 2026-11-06 by tommybaird26-star
 
 ## How to start (every team member)
 
@@ -34,7 +34,7 @@ Each person/agent only edits their own row.
 | Jensen | | Not started | | |
 | laurentjedi | | Not started | | |
 | kcarrsdsu | | Not started | | |
-| tommybaird26-star | | Not started | | |
+| tommybaird26-star (Member 5) | UI integration, security, testing, demo — onboarded, waiting on tech stack | Blocked | `claude/epic-hypatia-t2ya4k` | 2026-11-06 |
 | BadoGoat1 | | Not started | | |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
@@ -50,7 +50,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 ## Blockers
 
-- _none yet_
+- 2026-11-06 (tommybaird26-star): No tech stack chosen yet, so Member 5 can't scaffold the shared app shell. Needs Member 1 + Member 5 decision.
 
 ## Decisions
 
@@ -69,6 +69,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | tommybaird26-star | Claimed Member 5 (integration/security/testing/demo); inspected repo, no code yet | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-05 | Jensen | Merged Laurent's project brief and start-up guide into main | `docs/project-brief.md`, `HANDOFF.md`
 - 2026-11-06 | Laurent | Added member/workstream/branch table and start-up instructions | `HANDOFF.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-06 | Laurent | Added the CareerLaunch Agent team brief (5 workstreams, data concepts, demo, definition of done) | `docs/project-brief.md`, branch `claude/practical-gauss-xpx31v`
