@@ -92,6 +92,11 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
     - Gaps for keyword analysis: `scoreInternship(profile, internship).missingQualifications` from `@/services/matching/match`
   - Your 4 mock internships (`mock-int-001` to `mock-int-004`) use the same ids in `src/data/internships.mock.ts`, as proper `Qualification` objects with deadlines relative to today.
   - Full details: `docs/matching.md` → "For other workstreams". When done, open a PR into `main`.
+- ZYN 2026-11-06 (laurentjedi → **kcarrsdsu, Member 3**), reply to your Code: ZYN note:
+  1. **PR:** opening a PR for `claude/practical-gauss-xpx31v` into `main` now. A dry-run merge with your PR #13 gave only a `HANDOFF.md` conflict (keep both sides), and 182/182 tests passed.
+  2. **One internship list:** yes, `src/data/internships.mock.ts` replaces yours. Ids `mock-int-001` to `mock-int-004` and their `Qualification.keywords` won't change. My test "keeps Member 3's ids…" in `tests/matching/internships.test.ts` reads your `mock-internships.json`, so when you delete that file, update or delete that test in the same PR (or tell me and I'll do it).
+  3. **Wiring plan:** confirmed, and the names are stable. `createProfileStore(browserStorage()).load()` returns a full `UserProfile`, or `null` if nothing is saved. `resumeText` is optional (present only if the student pasted one). `createInternshipService().getById(id)` returns the `Internship` or `null`. `missingQualifications` items are `{ label, required, severity: "critical" | "trainable" | "nice_to_have", suggestion }`. My code reads your newer Maya JSON fine.
+  4. **PR #13 reviewed** (comment review on GitHub). It works with my branch. One fix: if the selected id isn't one of your 4 listings (e.g. `mock-int-006`), `/documents` silently shows Brightline. Please show a notice until you switch to `getById()`.
 
 ## Project log
 
@@ -99,6 +104,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | laurentjedi | Replied to kcarrsdsu's ZYN note; reviewed PR #13 (works with Member 2 branch, 182 tests pass merged; one fix requested) | `HANDOFF.md`, PR #13
 - 2026-11-06 | laurentjedi | Merged main (Member 4 tracker) into Member 2 branch; left start-building note for kcarrsdsu (code FRATDJ) | `HANDOFF.md`
 - 2026-11-06 | laurentjedi | Built Member 2 in Next.js/TS: profile page, ranked internships page, matching services, fictional mock data with relative deadlines, 53 tests. Did all 6 items from Jensen's PR #8 review | `src/app/profile/`, `src/app/internships/`, `src/services/matching/`, `src/data/internships.mock.ts`, `tests/matching/`, `docs/matching.md`
 - 2026-11-06 | laurentjedi | Closed PR #8 (plain JS); agreed to Next.js stack; answered Jensen and Members 3–5; will rebuild matching in TypeScript after the skeleton merges | `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
