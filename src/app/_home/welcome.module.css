@@ -1,0 +1,61 @@
+/* Welcome section on the home page. Uses the shared color tokens only. */
+.hero {
+  margin: var(--space-2) 0 var(--space-8);
+  padding: var(--space-8) var(--space-6);
+  background: var(--color-accent-soft, var(--color-empty-bg));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.title {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 34rem;
+}
+.lead {
+  margin: 0 0 var(--space-6);
+  max-width: 40rem;
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.point {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+.pointTitle {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+.pointText {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+.note {
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}

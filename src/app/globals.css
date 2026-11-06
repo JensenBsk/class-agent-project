@@ -337,3 +337,48 @@ main.container {
   background: var(--color-ai-bg);
   color: var(--color-ai-fg);
 }
+
+/* ==========================================================================
+   White + light blue theme (requested by laurentjedi, 2026-11-06).
+   Token overrides only: every page and module reads these variables.
+   This block comes after the dark-mode block, so the app stays light.
+   To remove the theme, delete this block.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+  --color-bg: #f4f8fd;
+  --color-surface: #ffffff;
+  --color-text: #10223a;
+  --color-text-muted: #4d617a;
+  --color-border: #d3e2f2;
+  --color-primary: #1867c0;
+  --color-primary-text: #ffffff;
+  --color-focus: #f0a500;
+  --color-accent-soft: #e6f1fc;
+
+  --color-success-bg: #e8f6ee;
+  --color-success-fg: #17663a;
+  --color-error-bg: #fdecec;
+  --color-error-fg: #a32020;
+  --color-empty-bg: #eef5fc;
+  --color-empty-fg: #34506f;
+  --color-mock-bg: #fff4d6;
+  --color-mock-fg: #6b4a00;
+  --color-ai-bg: #e6f1fc;
+  --color-ai-fg: #1f4e7a;
+}
+.app-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.app-nav a:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-primary);
+}
+.page-header h1 {
+  color: var(--color-text);
+}
+.home-plan-title {
+  margin: 0 0 var(--space-2);
+  font-size: 1.5rem;
+}

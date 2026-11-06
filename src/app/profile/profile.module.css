@@ -1,0 +1,110 @@
+/* Member 2 profile form. Uses Member 5's tokens from globals.css. */
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+.fieldset {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  min-width: 0;
+}
+.legend {
+  padding: 0 var(--space-2);
+  font-weight: 600;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-3) var(--space-4);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+.field label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.hint {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+.input {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  width: 100%;
+}
+.input[aria-invalid="true"] {
+  border-color: var(--color-error-fg);
+}
+textarea.input {
+  min-height: 5rem;
+  resize: vertical;
+}
+.required {
+  color: var(--color-error-fg);
+}
+.experience {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px dashed var(--color-border);
+}
+.experienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+.experienceHeader h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.danger {
+  border-color: var(--color-error-fg);
+  color: var(--color-error-fg);
+  background: transparent;
+}
+.button:disabled,
+.danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.list {
+  margin: var(--space-1) 0 0;
+  padding-left: 1.25rem;
+}
+.messages {
+  display: grid;
+  gap: var(--space-3);
+}
+.messages:not(:empty) {
+  margin-bottom: var(--space-4);
+}
+.dialog {
+  max-width: 26rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: var(--space-4);
+}
+.dialog::backdrop {
+  background: rgb(0 0 0 / 0.4);
+}

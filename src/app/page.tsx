@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { PageHeader } from "@/components/PageHeader";
 import { StateMessage } from "@/components/StateMessage";
 import { HomeNextAction } from "@/components/tracker/HomeNextAction";
 import { SECTIONS } from "@/lib/sections";
+import { Welcome } from "./_home/Welcome";
 
 export default function HomePage() {
   return (
     <>
-      <PageHeader
-        title="Your internship plan"
-        description="Work through these steps in order. You stay in control: nothing is submitted or sent without your approval."
-      />
+      <Welcome />
+
+      <h2 className="home-plan-title">Your internship plan</h2>
+      <p className="page-header__lead">
+        Work through these steps in order. You stay in control: nothing is submitted or sent without your approval.
+      </p>
 
       <section aria-labelledby="next-action-heading" className="card">
         <h2 id="next-action-heading">Next action</h2>
