@@ -35,7 +35,7 @@ Each person/agent only edits their own row.
 | laurentjedi | | Not started | | |
 | kcarrsdsu | | Not started | | |
 | tommybaird26-star | | Not started | | |
-| BadoGoat1 | Member 4: application tracker + agent orchestration | Blocked (waiting on tech stack) | `claude/happy-euler-34uh8h` | 2026-11-06 |
+| BadoGoat1 | Member 4: tracker, statuses, next actions, approvals (`src/agents/tracker/`) | Ready for review | `claude/happy-euler-34uh8h` | 2026-11-06 |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
 
@@ -50,7 +50,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 ## Blockers
 
-- 2026-11-06 (BadoGoat1): Member 4 tracker/orchestration work is waiting on the tech stack decision from Members 1 and 3.
+- _none yet_
 
 ## Decisions
 
@@ -67,6 +67,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 - 2026-11-05 (Jensen): Everyone please review `docs/data-definitions.md` before writing features, and object here if a name or field won't work for your workstream.
 - 2026-11-06 (Laurent): The team is now 5 people. Who takes Members 1–5? Each person should add a `handoffs/HANDOFF-<name>.md` and a row in the table above. Also: we still need to pick a tech stack (repo has no code yet) — suggest Member 1 + Member 5 decide before anyone writes features.
 - 2026-11-06 (BadoGoat1): I'm Member 4 (application tracker + agent orchestration). Members 1 and 3: please add the tech stack to **Decisions** when chosen. I'll start then. Also need agreed fields for `Internship`/`UserProfile` before wiring the tracker to them.
+- 2026-11-06 (BadoGoat1): Member 4 code is ready in `src/agents/tracker/` (see `docs/tracker-agent-design.md`). Member 3: your `relatedVersion?` on `ApprovalRequest` is in. Member 5: please add Vitest to the app skeleton so `tests/tracker/` runs.
 
 ## Project log
 
@@ -74,6 +75,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | BadoGoat1 | Built Member 4 tracker, status rules, next actions/reminders, approval gate + 57 tests | `src/agents/tracker/`, `tests/tracker/`, `docs/tracker-agent-design.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | BadoGoat1 | Took Member 4 (tracker + orchestration); waiting on tech stack before coding | `handoffs/HANDOFF-BadoGoat1.md`, `HANDOFF.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-05 | Jensen | Recorded the tech stack decision | `HANDOFF.md`, `README.md`, `docs/project-overview.md`
 - 2026-11-05 | Jensen | Wrote product overview, business case, user stories and shared data definitions, and updated the README | `docs/`, `README.md`, branch `feature/product-docs`
