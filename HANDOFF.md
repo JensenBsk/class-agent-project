@@ -4,7 +4,7 @@ The single place to see where the whole project stands. Agents update this at th
 
 **Project goal:** CareerLaunch Agent — an approval-based agentic assistant that guides college students from internship discovery through matching, résumé/cover-letter drafts, application tracking, and interview prep. Full brief: `docs/project-brief.md`.
 **Due date:** _YYYY-MM-DD_
-**Last updated:** 2026-11-05 by Jensen
+**Last updated:** 2026-11-06 by tommybaird26-star
 
 ## How to start (every team member)
 
@@ -34,7 +34,7 @@ Each person/agent only edits their own row.
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
 | laurentjedi | Member 2: profile, internship data, matching & ranking. Closed PR #8; will rebuild in Next.js/TypeScript once Member 5's skeleton is on `main` | Blocked (waiting on app skeleton) | `claude/practical-gauss-xpx31v` | 2026-11-06 |
 | kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
-| tommybaird26-star | | Not started | | |
+| tommybaird26-star (Member 5) | Next.js app skeleton merged into `main` (PR #12); next: help port Member 2 code | Done | `main` | 2026-11-06 |
 | BadoGoat1 | Member 4: tracker, statuses, next actions, approvals (`src/agents/tracker/`) | Ready for review | `claude/happy-euler-34uh8h` | 2026-11-06 |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
@@ -42,7 +42,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 ## Milestones
 
 - [ ] Idea and scope locked
-- [ ] Repo set up, everyone can run the code
+- [x] Repo set up, everyone can run the code
 - [ ] First agent run (agent completes a goal using one tool)
 - [ ] All features working end to end
 - [ ] Tests and README done
@@ -59,6 +59,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 | 2026-11-05 | After reviewing PR #8, Next.js with TypeScript stays. Use the App Router in `src/app`, not a `src/pages` folder. Shared logic goes in `src/services` | PR #8 proposed plain JavaScript. Keeping one stack avoids a rival setup, and most of its logic is plain functions that can move across | Jensen (Member 1). Member 5 still needs to confirm |
 | 2026-11-05 | `docs/data-definitions.md` updated: takes Member 2's `Qualification` and `MatchScore` shapes, and approves Member 3's optional extras. Member 3's Maya is the one demo user | Member 2's matching crashed on Member 3's data, so everyone needs one shape | Jensen (Member 1) |
 | 2026-11-05 | Tech stack: Next.js with TypeScript in one app. Tests use Vitest. Internships come from labeled mock data, with no database at first. AI calls and keys stay on the server. Host on Vercel | One codebase for all five people, and shared types match `docs/data-definitions.md` | Jensen (Member 1). Member 5 still needs to confirm |
+| 2026-11-06 | Member 5 confirms the Next.js stack. Versions: Next 16.4.5, React 19, TypeScript 5, Vitest 5.1.0 (older Next 15/Vitest 3 had critical `npm audit` findings). Shared types live in `src/types/index.ts`, imported as `@/types` | One app everyone builds into; 0 known vulnerabilities | tommybaird26-star (Member 5) |
 | 2026-11-05 | Jensen is Member 1 | Claimed the product, research and documentation workstream | Jensen |
 | 2026-11-06 | `docs/project-brief.md` is the shared source of truth for scope, terminology, workstreams, and definition of done | Team expanded to 5 members; everyone needs one brief | Laurent |
 
@@ -88,6 +89,11 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
 - 2026-11-06 | laurentjedi | Closed PR #8 (plain JS); agreed to Next.js stack; answered Jensen and Members 3–5; will rebuild matching in TypeScript after the skeleton merges | `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
+- 2026-11-06 | tommybaird26-star | Merged the Next.js app skeleton into main. Everyone: `git pull`, `npm install`, `npm run dev` | PR #12, `main`
+- 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`
+- 2026-11-06 | tommybaird26-star | Next.js + TS + Vitest app skeleton: shared types, nav/layout, state components, security headers, secrets test, README setup | `src/`, `tests/`, config files, `README.md`, branch `claude/epic-hypatia-t2ya4k`
+- 2026-11-06 | tommybaird26-star | On hold until teammates decide tech stack; no code changes | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`
+- 2026-11-06 | tommybaird26-star | Claimed Member 5 (integration/security/testing/demo); inspected repo, no code yet | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-06 | BadoGoat1 | Built Member 4 tracker, status rules, next actions/reminders, approval gate + 57 tests | `src/agents/tracker/`, `tests/tracker/`, `docs/tracker-agent-design.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | BadoGoat1 | Took Member 4 (tracker + orchestration); waiting on tech stack before coding | `handoffs/HANDOFF-BadoGoat1.md`, `HANDOFF.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | kcarrsdsu | Member 3 spec (data shapes, no-fabrication rules, test plan) + mock data (Maya, 4 fictional internships, interview question bank, skill aliases) | `docs/resume-interview-spec.md`, `src/data/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
