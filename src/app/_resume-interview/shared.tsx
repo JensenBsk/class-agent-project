@@ -5,6 +5,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { MockDataLabel } from "@/components/Labels";
+import { StateMessage } from "@/components/StateMessage";
 import { getDemoProfile, getMockInternships } from "@/services/resume-interview";
 import type { Internship, UserProfile } from "@/types";
 import styles from "./resume-interview.module.css";
@@ -28,10 +29,28 @@ function writeSelected(id: string) {
   }
 }
 
+/**
+ * Pick the internship to show. If the saved id isn't in this list (for example
+ * a Member 2 listing Member 3 doesn't have yet), say so instead of silently
+ * switching to another role.
+ */
+export function resolveSelection(
+  savedId: string | null,
+  internships: Internship[],
+): { internship: Internship; unavailableId: string | null } {
+  const found = savedId ? internships.find((i) => i.id === savedId) : undefined;
+  return {
+    internship: found ?? internships[0],
+    unavailableId: savedId && !found ? savedId : null,
+  };
+}
+
 export interface DemoContext {
   profile: UserProfile;
   internships: Internship[];
   internship: Internship;
+  /** The saved internship id when it isn't available on this page; null otherwise. */
+  unavailableId: string | null;
   selectInternship: (id: string) => void;
   /** False until the browser has loaded, so server and browser render the same thing. */
   ready: boolean;
@@ -45,20 +64,20 @@ export interface DemoContext {
 export function useDemoContext(): DemoContext {
   const profile = useMemo(() => getDemoProfile(), []);
   const internships = useMemo(() => getMockInternships(), []);
-  const [selectedId, setSelectedId] = useState(internships[0].id);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const saved = readSelected();
-    if (saved && internships.some((i) => i.id === saved)) setSelectedId(saved);
+    setSelectedId(readSelected());
     setReady(true);
-  }, [internships]);
+  }, []);
 
-  const internship = internships.find((i) => i.id === selectedId) ?? internships[0];
+  const { internship, unavailableId } = resolveSelection(selectedId, internships);
   return {
     profile,
     internships,
     internship,
+    unavailableId,
     ready,
     selectInternship: (id: string) => {
       setSelectedId(id);
@@ -72,6 +91,15 @@ export function InternshipPicker({ ctx, id }: { ctx: DemoContext; id: string }) 
   return (
     <section className="card" aria-labelledby={`${id}-heading`}>
       <h2 id={`${id}-heading`}>Internship and profile</h2>
+      {ctx.unavailableId ? (
+        <StateMessage variant="error" title="The internship you selected isn't available here yet">
+          You picked a listing ({ctx.unavailableId}) that isn&apos;t loaded on this page yet, so it&apos;s showing{" "}
+          <strong>
+            {internship.title} at {internship.company}
+          </strong>{" "}
+          instead. Choose an internship below.
+        </StateMessage>
+      ) : null}
       <div className={styles.row}>
         <div className={styles.field}>
           <label htmlFor={id}>Internship</label>

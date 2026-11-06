@@ -15,6 +15,7 @@ _Replace this section every time. Keep it to what's true right now._
   - Mock data moved to the shared `Qualification` / `Compensation` / `WorkAuthorization` shapes; deadlines = today + `deadlineOffsetDays`.
   - 43 Vitest tests in `tests/resume-interview/` covering spec T1–T15. Full suite after merging main: 129/129 pass; `npm run typecheck` and `npm run build` clean.
   - Browser check (Playwright, Chromium): approve → copy (clipboard gets the approved résumé), edit with "Led" + a made-up number → flags appear and Approve is disabled until confirmed, decline → nothing happens, Harborview draft never mentions Java/Kubernetes, no horizontal scroll at 375px (dark mode), no console errors.
+- **Laurent's review of PR #13 (2026-11-06):** works with the Member 2 branch (182/182 tests when merged locally). One fix asked for and done: if the saved internship id isn't in Member 3's list (e.g. `mock-int-006`), both pages now show a notice instead of silently switching to Brightline (`resolveSelection()` in `src/app/_resume-interview/shared.tsx`, tests in `tests/resume-interview/selection.test.tsx`). Laurent's ZYN answers: Laurent is opening a PR for `claude/practical-gauss-xpx31v`; Laurent's `src/data/internships.mock.ts` replaces mine (ids `mock-int-001`–`004` and their keywords won't change); the wiring functions are stable (`load()` returns a `UserProfile` or `null`; `getById(id)` returns an `Internship` or `null`).
 - **Half-done / in progress:** Nothing in progress.
 - **Broken or known bugs / limits:**
   - Pages use the demo profile (Maya) and Member 3's mock internships until Member 2's Profile/Internships pages are ported. They read/write `localStorage["careerlaunch.selectedInternshipId"]` (Member 2's interface).
@@ -23,9 +24,10 @@ _Replace this section every time. Keep it to what's true right now._
   - The question bank's gap tip uses Kubernetes as its example even when the gap is a different skill.
 - **Next steps (specific enough to pick up cold):**
   1. Laurent's note to Member 3 (code FRATDJ, in `HANDOFF.md` on branch `claude/practical-gauss-xpx31v`) asks to wire the pages to Member 2's code. Once that branch is merged into `main`, change only `useDemoContext()` in `src/app/_resume-interview/shared.tsx`: profile from `createProfileStore(browserStorage()).load()` (`@/services/matching/profile`), internship from `createInternshipService().getById(id)` (`@/services/matching/internships`) using `localStorage["careerlaunch.selectedInternshipId"]`. Optionally show `scoreInternship(profile, internship).missingQualifications` (`@/services/matching/match`) next to the keyword table. Keep the demo Maya as the fallback when no profile is saved. Note: that note says my mock data uses old shapes; that was fixed in this PR.
-  2. Member 4/5: show approved drafts on `/tracker` (e.g. move an Application to `ready_for_review` when both drafts are `approved`). Member 3 never changes `Application.status`.
-  3. Optional: add an AI model behind a server route (`AI_API_KEY` in `.env.local`), passing its output through `runChecks` in `src/services/resume-interview/checks.ts`.
-  4. Optional: persist drafts in `localStorage` like Member 4's tracker storage.
+  2. When switching to Laurent's internships, delete `src/data/resume-interview/mock-internships.json` and in the SAME PR update or delete Laurent's test `tests/matching/internships.test.ts` ("keeps Member 3's ids…"), which reads that file (or ask Laurent to). Then the "not available here" notice should no longer appear for Member 2 listings.
+  3. Member 4/5: show approved drafts on `/tracker` (e.g. move an Application to `ready_for_review` when both drafts are `approved`). Member 3 never changes `Application.status`.
+  4. Optional: add an AI model behind a server route (`AI_API_KEY` in `.env.local`), passing its output through `runChecks` in `src/services/resume-interview/checks.ts`.
+  5. Optional: persist drafts in `localStorage` like Member 4's tracker storage.
 - **Needs from teammates:**
   - Member 2 (Laurent): OK to share one skill-alias list? (asked on PR #8)
   - Member 5 (tommybaird26-star): review PR #13 and include `/documents` and `/interview` in the demo script.
