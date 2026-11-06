@@ -32,7 +32,7 @@ Each person/agent only edits their own row.
 | Person | Working on now | Status | Branch | Last update |
 | --- | --- | --- | --- | --- |
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
-| laurentjedi | Member 2: `/profile` and `/internships` pages built on the Next.js app (TypeScript), with 53 tests | Ready for review | `claude/practical-gauss-xpx31v` | 2026-11-06 |
+| laurentjedi | Member 2 done: `/profile`, `/internships`, plus white/light-blue theme and home welcome section (needs Tommy/Jensen decision) | Ready for review | PR #15, `claude/practical-gauss-xpx31v` | 2026-11-06 |
 | kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
 | laurentjedi | | Not started | | |
 | kcarrsdsu | Member 3: `/documents` and `/interview` pages built (services, 43 tests); PR #13 | Ready for review | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
