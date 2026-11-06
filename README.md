@@ -53,6 +53,17 @@ Teammate's agent reads both files → continues the work
 - If your agent skips the handoff, tell it: "Update the handoff files per AGENTS.md before we stop."
 - Never commit `.env` or API keys.
 
+## Run the app (CareerLaunch Agent)
+
+Requires Node 20+. No dependencies or API keys needed yet; all internship data is fictional mock data.
+
+```bash
+npm start   # then open http://localhost:8000/
+npm test    # run all tests
+```
+
+Project brief: `docs/project-brief.md` · Matching design: `docs/matching.md`
+
 ## Setup
 
 1. Install Git and Python 3.10+ (or whatever stack we pick).

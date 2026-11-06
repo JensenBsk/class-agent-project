@@ -33,6 +33,7 @@ Each person/agent only edits their own row.
 | --- | --- | --- | --- | --- |
 | Jensen | | Not started | | |
 | Teammate | | Not started | | |
+| Laurent (Member 2) | Profile, internship data, matching & ranking | Ready for review | `claude/practical-gauss-xpx31v` | 2026-11-06 |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
 
@@ -54,6 +55,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 | Date | Decision | Why | Who |
 | --- | --- | --- | --- |
 | 2026-11-06 | `docs/project-brief.md` is the shared source of truth for scope, terminology, workstreams, and definition of done | Team expanded to 5 members; everyone needs one brief | Laurent |
+| 2026-11-06 | **Proposed stack:** plain JavaScript (ES modules), no build step, Node 20+ built-in test runner (`npm test`), `npm start` dev server. Open to change. Member 5 please confirm | Repo had no stack; zero dependencies keeps setup trivial for 5 people and easy to wrap in a framework later | Laurent |
 
 ## Questions for each other
 
@@ -66,6 +68,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | Laurent | Member 2 v1: profile form, mock internships, search/filter, explainable matching, 29 tests | `src/`, `tests/`, `docs/matching.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-06 | Laurent | Added member/workstream/branch table and start-up instructions | `HANDOFF.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-06 | Laurent | Added the CareerLaunch Agent team brief (5 workstreams, data concepts, demo, definition of done) | `docs/project-brief.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-05 | Jensen | Created project folder, agent rules, and handoff files | repo root
