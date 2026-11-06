@@ -34,7 +34,7 @@ Each person/agent only edits their own row.
 | Jensen | | Not started | | |
 | laurentjedi | | Not started | | |
 | kcarrsdsu | | Not started | | |
-| tommybaird26-star (Member 5) | UI integration, security, testing, demo — onboarded, waiting on tech stack | Blocked | `claude/epic-hypatia-t2ya4k` | 2026-11-06 |
+| tommybaird26-star (Member 5) | UI integration, security, testing, demo — on hold until team picks tech stack | Blocked | `claude/epic-hypatia-t2ya4k` | 2026-11-06 |
 | BadoGoat1 | | Not started | | |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
@@ -69,6 +69,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | tommybaird26-star | On hold until teammates decide tech stack; no code changes | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`
 - 2026-11-06 | tommybaird26-star | Claimed Member 5 (integration/security/testing/demo); inspected repo, no code yet | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-05 | Jensen | Merged Laurent's project brief and start-up guide into main | `docs/project-brief.md`, `HANDOFF.md`
 - 2026-11-06 | Laurent | Added member/workstream/branch table and start-up instructions | `HANDOFF.md`, branch `claude/practical-gauss-xpx31v`

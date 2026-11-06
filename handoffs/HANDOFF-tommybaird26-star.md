@@ -9,10 +9,10 @@ _Replace this section every time. Keep it to what's true right now._
 - **Working on:** Member 5 — UI integration, security, testing, final demo. Onboarded only; no code yet.
 - **Branch:** `claude/epic-hypatia-t2ya4k` (session branch). Brief says feature work goes on `feature/integration-testing`.
 - **Done:** Read `AGENTS.md`, `HANDOFF.md`, `docs/project-brief.md`, all `handoffs/`. Confirmed repo has no code, no package manager, no tests (`src/` holds only `.gitkeep`).
-- **Half-done / in progress:** none
+- **Half-done / in progress:** none. On hold by choice: waiting for teammates to pick the tech stack before doing any Member 5 work (no scaffolding, no stack proposal pushed).
 - **Broken or known bugs:** none (nothing to run yet)
 - **Next steps (specific enough to pick up cold):**
-  1. Agree tech stack with Member 1 (brief + `HANDOFF.md` Questions say Members 1 and 5 decide it). Record it in `HANDOFF.md` → Decisions.
+  1. Wait until the stack appears in `HANDOFF.md` → Decisions (teammates are deciding). Do not scaffold before then.
   2. Once agreed, scaffold the app shell on `feature/integration-testing`: shared layout, nav for the 5 sections (Profile, Internships, Résumé/Cover letter, Tracker, Interview prep), test runner, `.env.example`, `.gitignore` covering `.env`.
   3. Publish shared type stubs for `UserProfile`, `Internship`, `MatchScore`, `ResumeDraft`, `CoverLetterDraft`, `Application`, `InterviewPlan`, `AgentTask`, `ApprovalRequest`, `Notification` so Members 2–4 build against one interface.
 - **Needs from teammates:** Tech stack decision (Member 1); who is Member 1–4 (no one has claimed a number yet).
@@ -35,6 +35,19 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-06 | On hold for tech stack
+**Goal:** Pause Member 5 work until the team decides the stack.
+**What I did:**
+- Marked status as waiting; no code changes.
+**Files changed:**
+- `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`: status only
+**Decisions made:**
+- tommybaird26-star will not propose or scaffold a stack; will build on whatever the team picks.
+**Problems / bugs found:**
+- none
+**Next steps:**
+1. Check `HANDOFF.md` → Decisions for the stack, then scaffold on `feature/integration-testing`.
 
 ### 2026-11-06 | Onboarding as Member 5
 **Goal:** Inspect repo and get ready for the integration/testing workstream.
