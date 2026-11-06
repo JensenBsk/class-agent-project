@@ -1,6 +1,6 @@
 # Agentic AI Class Project
 
-Shared project folder for our class agentic AI build. Four people, each working with their own AI agent, handing work back and forth through handoff files.
+Shared project folder for our class agentic AI build. Five people, each working with their own AI agent, handing work back and forth through handoff files.
 
 ## Team
 
@@ -10,6 +10,7 @@ Shared project folder for our class agentic AI build. Four people, each working 
 | laurentjedi | `handoffs/HANDOFF-laurentjedi.md` | |
 | kcarrsdsu | `handoffs/HANDOFF-kcarrsdsu.md` | |
 | tommybaird26-star | `handoffs/HANDOFF-tommybaird26-star.md` | |
+| BadoGoat1 | `handoffs/HANDOFF-BadoGoat1.md` | |
 
 ## Folder layout
 
@@ -23,7 +24,8 @@ agentic-project/
 │   ├── HANDOFF-jensen.md    ← Jensen's agent writes here
 │   ├── HANDOFF-laurentjedi.md
 │   ├── HANDOFF-kcarrsdsu.md
-│   └── HANDOFF-tommybaird26-star.md  ← each person's agent writes only to its own file
+│   ├── HANDOFF-tommybaird26-star.md
+│   └── HANDOFF-BadoGoat1.md  ← each person's agent writes only to its own file
 └── src/                 ← project code goes here
 ```
 
