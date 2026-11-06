@@ -2,7 +2,7 @@
 
 CareerLaunch Agent is an AI assistant that guides college students through the internship process, from finding opportunities to preparing for interviews, and asks for approval before anything important happens.
 
-**Status:** planning. There is no app code yet. The planned stack is Next.js with TypeScript.
+**Status:** app skeleton is set up (Next.js 16 + TypeScript + Vitest). Each section is a placeholder until its owner builds it.
 
 This is our shared project folder for our class agentic AI build. Five people, each working with their own AI agent, handing work back and forth through handoff files.
 
@@ -74,7 +74,36 @@ Teammate's agent reads the handoff files → continues the work
 
 ## Setup
 
-1. Install Git.
-2. Clone the repo: `git clone https://github.com/JensenBsk/class-agent-project.git`
+You need Node.js 20 or newer and Git.
 
-There is no app to run yet. Instructions for running it, and any `.env` setup, will be added here once Member 5 has set up the app.
+```bash
+git clone https://github.com/JensenBsk/class-agent-project.git
+cd class-agent-project
+npm install
+cp .env.example .env.local   # optional: only needed for real AI calls
+npm run dev                  # open http://localhost:3000
+```
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Run the app locally with hot reload |
+| `npm test` | Run all Vitest tests once (includes a scan for committed secrets) |
+| `npm run typecheck` | Check TypeScript types |
+| `npm run build` | Production build (run this before opening a PR) |
+
+### Where code goes
+
+| Path | What lives there | Owner |
+| --- | --- | --- |
+| `src/types/index.ts` | Shared types from `docs/data-definitions.md`. Import from `@/types` | Member 1 (change via Decisions) |
+| `src/app/<section>/page.tsx` | One page per section: `profile`, `internships`, `documents`, `tracker`, `interview` | Owner noted at the top of each page |
+| `src/components/` | Shared UI: `StateMessage` (loading/error/empty/success), `MockDataLabel`, `AiGeneratedLabel`, `PageHeader` | Member 5 |
+| `src/app/globals.css` | Shared colors and classes (`card`, `button`, `state`, `label`). Use the CSS variables, not hard-coded colors | Member 5 |
+| `src/lib/sections.ts` | The nav and home-page section list | Member 5 |
+| `tests/` | Vitest tests. Put yours in `tests/<your-area>/` | Everyone |
+
+### Rules for secrets
+
+- Real keys go only in `.env.local`, which git ignores.
+- Read keys only in server code (route handlers, server actions). Never prefix a secret with `NEXT_PUBLIC_`, because Next.js sends those to the browser.
+- `npm test` fails if it finds something that looks like an API key in the repo.

@@ -6,16 +6,27 @@ Only tommybaird26-star's agent edits this file. The other agents read it to pick
 
 _Replace this section every time. Keep it to what's true right now._
 
-- **Working on:** Member 5 — UI integration, security, testing, final demo. Onboarded only; no code yet.
-- **Branch:** `claude/epic-hypatia-t2ya4k` (session branch). Brief says feature work goes on `feature/integration-testing`.
-- **Done:** Read `AGENTS.md`, `HANDOFF.md`, `docs/project-brief.md`, all `handoffs/`. Confirmed repo has no code, no package manager, no tests (`src/` holds only `.gitkeep`).
-- **Half-done / in progress:** none. On hold by choice: waiting for teammates to pick the tech stack before doing any Member 5 work (no scaffolding, no stack proposal pushed).
-- **Broken or known bugs:** none (nothing to run yet)
+- **Working on:** Member 5: UI integration, security, testing, final demo. App skeleton is done and ready for review.
+- **Branch:** `claude/epic-hypatia-t2ya4k` (the brief's name is `feature/integration-testing`)
+- **Done:**
+  - Next.js 16.4.5 + React 19 + TypeScript + Vitest 5 app (`package.json`, `tsconfig.json`, `next.config.ts`, `vitest.config.ts`). `npm audit`: 0 vulnerabilities.
+  - Shared types for all 10 objects in `src/types/index.ts`, matching `docs/data-definitions.md` (plus enum value lists such as `APPLICATION_STATUSES`).
+  - App shell: header, 5-step nav (`src/components/AppNav.tsx`, `src/lib/sections.ts`), skip link, footer, home page with a "Next action" card and step cards (`src/app/page.tsx`).
+  - Placeholder pages: `src/app/{profile,internships,documents,tracker,interview}/page.tsx`. The owner is noted at the top of each.
+  - Shared states: `StateMessage` (loading/error/empty/success), `MockDataLabel`, `AiGeneratedLabel`, `PageHeader`; app-level `loading.tsx`, `error.tsx` (doesn't show raw error text), `not-found.tsx`.
+  - Styles in `src/app/globals.css` with CSS variables, dark mode, 44px touch targets, visible focus, reduced motion.
+  - Security: security headers + `poweredByHeader: false` in `next.config.ts`; `.gitignore` excludes `.env*`; `.env.example` (server-only `AI_API_KEY`); `tests/security/no-secrets.test.ts` fails if anything key-shaped is in the repo.
+  - README setup, commands, "where code goes", and secret rules.
+- **Verified:** `npm test` (12 pass), `npm run typecheck`, `npm run build` all clean. In the browser at 1280px and on iPhone 13 (light and dark): no horizontal scroll, no console errors, skip link is the first Tab stop, 404 works, security headers present.
+- **Half-done / in progress:** Nothing. Not merged to `main` yet.
+- **Broken or known bugs:** None known.
+  - Conflict to resolve: Laurent's branch `claude/practical-gauss-xpx31v` (Member 2 work) uses plain JS ES modules, `node --test`, and its own `package.json`/`scripts/serve.js`, not the agreed Next.js stack. Merging both will conflict on `package.json` and `README.md`. I did not touch Laurent's code.
 - **Next steps (specific enough to pick up cold):**
-  1. Wait until the stack appears in `HANDOFF.md` → Decisions (teammates are deciding). Do not scaffold before then.
-  2. Once agreed, scaffold the app shell on `feature/integration-testing`: shared layout, nav for the 5 sections (Profile, Internships, Résumé/Cover letter, Tracker, Interview prep), test runner, `.env.example`, `.gitignore` covering `.env`.
-  3. Publish shared type stubs for `UserProfile`, `Internship`, `MatchScore`, `ResumeDraft`, `CoverLetterDraft`, `Application`, `InterviewPlan`, `AgentTask`, `ApprovalRequest`, `Notification` so Members 2–4 build against one interface.
-- **Needs from teammates:** Tech stack decision (Member 1); who is Member 1–4 (no one has claimed a number yet).
+  1. Human: open a PR from `claude/epic-hypatia-t2ya4k` into `main` so Members 2–4 can branch from the skeleton.
+  2. Help port Laurent's `src/services/*.js` and `src/data/*.mock.js` into TypeScript under `src/services/` and `src/data/`, using `@/types` (only with Laurent's agreement).
+  3. Add a shared approval-step UI component once Member 4 defines how `ApprovalRequest` is created and decided.
+  4. Later: end-to-end test of the Maya demo flow (Playwright), accessibility pass on each finished section, final demo script in `docs/demo-script.md`.
+- **Needs from teammates:** Laurent: OK to move the matching code to TypeScript/Next.js? Members 2–4: build pages in `src/app/<section>/page.tsx`, import types from `@/types`, use `StateMessage` and the labels.
 
 ## Session log
 
@@ -35,6 +46,24 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-06 | Next.js app skeleton
+**Goal:** Set up the agreed stack so all members can build in one app.
+**What I did:**
+- Merged `main` (stack decision, Member 1 docs) into my branch.
+- Scaffolded Next.js + TypeScript + Vitest; started on Next 15/Vitest 3, but `npm audit` showed 2 critical and 1 high vulnerabilities, so upgraded to Next 16.4.5 / Vitest 5.1.0 (0 vulnerabilities). Dropped `@vitejs/plugin-react` (peer conflict); Vite compiles JSX itself.
+- Built shared types, app shell, nav, state components, labels, styles, security headers, secrets test, README.
+**Files changed:**
+- `package.json`, `package-lock.json`, `tsconfig.json`, `next.config.ts`, `vitest.config.ts`, `vitest.setup.ts`, `.gitignore`, `.env.example`
+- `src/types/index.ts`, `src/lib/sections.ts`, `src/components/*`, `src/app/**`
+- `tests/integration/*`, `tests/security/no-secrets.test.ts`
+- `README.md`: setup and conventions
+**Decisions made:**
+- Confirmed the Next.js stack as Member 5. Pinned exact versions. Path alias `@/*` → `src/*`. Plain CSS with variables (no Tailwind) to keep dependencies small.
+**Problems / bugs found:**
+- Laurent's Member 2 branch is on a different stack (see Current status).
+**Next steps:**
+1. PR into `main`; then coordinate the port of Laurent's matching code.
 
 ### 2026-11-06 | On hold for tech stack
 **Goal:** Pause Member 5 work until the team decides the stack.
