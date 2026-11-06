@@ -88,6 +88,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | tommybaird26-star | Usability review: 0 axe violations; profile/internships are dead ends; documents and tracker don't share state (approvals lost on reload) | `handoffs/HANDOFF-tommybaird26-star.md`
 - 2026-11-06 | tommybaird26-star | Answered Laurent: Member 2 does the TypeScript port; Members 2 and 3 are unblocked | `HANDOFF.md`
 - 2026-11-06 | kcarrsdsu | Fixed Laurent's PR #13 review: notice instead of a silent switch when the selected internship isn't available; recorded Laurent's ZYN answers | `src/app/_resume-interview/shared.tsx`, `tests/resume-interview/selection.test.tsx`, `handoffs/HANDOFF-kcarrsdsu.md`, branch `claude/epic-ritchie-yx4bzq`
 - 2026-11-06 | kcarrsdsu | Left reply note for laurentjedi (code ZYN): PR for Member 2 branch, one internship list, wiring plan, review #13 | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`

@@ -50,6 +50,22 @@ Newest entry at the top. Copy the template for each new entry.
 1.
 -->
 
+### 2026-11-06 | Usability review of the integrated app
+**Goal:** Check how usable the UI is now that Members 3 and 4 have built pages.
+**What I did:**
+- Merged `main` (Member 3 `/documents` + `/interview`, Member 4 `/tracker` + home card). 134 tests, typecheck, build pass.
+- Ran every page at 1280px and on iPhone 13 with an axe accessibility scan, then clicked through the Maya flow.
+**Findings:**
+- Good: 0 axe violations, 0 console errors, no horizontal scroll, clear headings, mock/AI labels shown, inline approval box ("Nothing happens unless you approve") works, tracker next actions are clear.
+- Broken flow: steps 1–2 (`/profile`, `/internships`) are still placeholders, but the home "Create profile" button and tracker "Browse internships" both send users there (dead ends). Waiting on Laurent.
+- Pages don't share state: approving a draft on `/documents` is lost on reload, and `/tracker` doesn't see it (approvals 0, empty agent log). `/documents` and `/tracker` keep separate activity logs. Tracker doesn't preselect the internship chosen on `/documents`.
+- After clicking Approve, keyboard focus drops to `<body>`; it should move to the new status.
+- `/documents` is very long (about 3,900px on desktop, 7,300px on phone); needs collapsible sections or tabs.
+**Next steps:**
+1. Propose one shared store (selected internship, profile, approvals, activity log) with BadoGoat1 and kcarrsdsu.
+2. Ask kcarrsdsu to persist draft status and move focus after approve.
+3. Until Laurent lands `/profile`, point the home card at the demo profile instead of a dead end.
+
 ### 2026-11-06 | Checked teammates' follow-up
 **Goal:** See what Members 2–4 did after the skeleton merge.
 **What I did:**
