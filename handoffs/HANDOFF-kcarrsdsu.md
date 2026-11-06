@@ -7,24 +7,28 @@ Only kcarrsdsu's agent edits this file. The other agents read it to pick up wher
 _Replace this section every time. Keep it to what's true right now._
 
 - **Working on:** Member 3 — résumé, cover letter, and interview preparation.
-- **Branch:** `claude/epic-ritchie-yx4bzq` (restarted from `main` after PR #7 merged)
+- **Branch:** `claude/epic-ritchie-yx4bzq` (PR #13 — now includes the pages, not just handoffs)
 - **Done:**
-  - PR #7 merged: `docs/resume-interview-spec.md` (rules R1–R12, approval flow, tests T1–T15) and mock data in `src/data/resume-interview/`.
-  - Jensen approved the spec §4 optional extras in `docs/data-definitions.md` (PR #10). My Maya (`src/data/resume-interview/mock-profile-maya.json`) is now the team's one demo user.
-  - Posted a review (Comment, not blocking) on Laurent's PR #8: stack conflict, `HANDOFF.md` merge conflict, duplicate `handoffs/HANDOFF-laurent.md`, field-name mismatches, empty `resumeText`, two skill-alias lists.
-- **Half-done / in progress:** My mock data and spec still use the OLD shapes: `requiredQualifications`/`preferredQualifications` are `string[]` (now `Qualification[]`), `compensation` is a string (now `Compensation`), and `workAuthorization` is a string (now `WorkAuthorization`).
-- **Broken or known bugs:**
-  - Per Jensen, Member 2's matching crashed on my data because of those old shapes.
-  - Point 5 of my PR #8 review offered to switch to Laurent's Maya. That's now out of date: Jensen chose my Maya. Tell Laurent if it comes up.
+  - `/documents` page (`src/app/documents/`): keyword table (in résumé / in profile — added / not in your material), résumé draft side by side with the original, "what changed and why" with quotes from the profile, claims to check (Must fix / Check this / Confirmed by student), "ideas to make bullets stronger" (placeholders only), edit → new version, approve and copy each behind an approval prompt, version history, activity record.
+  - `/interview` page (`src/app/interview/`): company summary from the listing (mock label + disclaimer), STAR guide, behavioral questions with STAR talking points from Maya's real experience, technical questions (gap badge + honest-answer tip for skills she lacks), role questions, practice mode with STAR feedback, questions to ask.
+  - Logic in `src/services/resume-interview/` (pure functions; see spec §9 table). Approvals use Member 4's `AgentActivityLog` with `relatedVersion`.
+  - Mock data moved to the shared `Qualification` / `Compensation` / `WorkAuthorization` shapes; deadlines = today + `deadlineOffsetDays`.
+  - 43 Vitest tests in `tests/resume-interview/` covering spec T1–T15. Full suite after merging main: 129/129 pass; `npm run typecheck` and `npm run build` clean.
+  - Browser check (Playwright, Chromium): approve → copy (clipboard gets the approved résumé), edit with "Led" + a made-up number → flags appear and Approve is disabled until confirmed, decline → nothing happens, Harborview draft never mentions Java/Kubernetes, no horizontal scroll at 375px (dark mode), no console errors.
+- **Half-done / in progress:** Nothing in progress.
+- **Broken or known bugs / limits:**
+  - Pages use the demo profile (Maya) and Member 3's mock internships until Member 2's Profile/Internships pages are ported. They read/write `localStorage["careerlaunch.selectedInternshipId"]` (Member 2's interface).
+  - Drafts, approvals and practice answers live in page memory and reset on reload.
+  - Template generator only (no AI model yet). Rules check the text, but can't verify company claims a student types into a cover letter themselves.
+  - The question bank's gap tip uses Kubernetes as its example even when the gap is a different skill.
 - **Next steps (specific enough to pick up cold):**
-  1. Update `src/data/resume-interview/mock-internships.json`: convert each qualification to `{label, type, keywords, trainable}`, `compensation` to `{hourlyMin?, hourlyMax?, note}`, set deadlines relative to today (rule in `docs/data-definitions.md`).
-  2. Update `mock-profile-maya.json`: `workAuthorization` → `{authorizedToWork: true, needsSponsorship: false}`; optionally add `skills` per experience item.
-  3. Update `docs/resume-interview-spec.md` §2 inputs for the new shapes; change §9 code location to `src/services/resume-interview/` (Jensen: shared logic goes in `src/services`, App Router in `src/app`); label claims backed only by `user_confirmation` as "confirmed by student", not "proven".
-  4. Once the Next.js skeleton is on `main`: `analyzeKeywords` + Vitest tests T1–T2, then the template résumé generator + rule checks (T3–T10), cover letter (T11), interview plan + practice feedback (T13–T14).
+  1. Laurent's note to Member 3 (code FRATDJ, in `HANDOFF.md` on branch `claude/practical-gauss-xpx31v`) asks to wire the pages to Member 2's code. Once that branch is merged into `main`, change only `useDemoContext()` in `src/app/_resume-interview/shared.tsx`: profile from `createProfileStore(browserStorage()).load()` (`@/services/matching/profile`), internship from `createInternshipService().getById(id)` (`@/services/matching/internships`) using `localStorage["careerlaunch.selectedInternshipId"]`. Optionally show `scoreInternship(profile, internship).missingQualifications` (`@/services/matching/match`) next to the keyword table. Keep the demo Maya as the fallback when no profile is saved. Note: that note says my mock data uses old shapes; that was fixed in this PR.
+  2. Member 4/5: show approved drafts on `/tracker` (e.g. move an Application to `ready_for_review` when both drafts are `approved`). Member 3 never changes `Application.status`.
+  3. Optional: add an AI model behind a server route (`AI_API_KEY` in `.env.local`), passing its output through `runChecks` in `src/services/resume-interview/checks.ts`.
+  4. Optional: persist drafts in `localStorage` like Member 4's tracker storage.
 - **Needs from teammates:**
   - Member 2 (Laurent): OK to share one skill-alias list? (asked on PR #8)
-  - Member 4: OK adding optional `relatedVersion?` to `ApprovalRequest` (spec §5)? Still unclaimed.
-  - Member 5: confirm the stack and push the Next.js skeleton. Still unclaimed.
+  - Member 5 (tommybaird26-star): review PR #13 and include `/documents` and `/interview` in the demo script.
 
 ## Session log
 
@@ -44,6 +48,29 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-06 | Built /documents and /interview
+**Goal:** Build Member 3's pages in `src/app/<section>/page.tsx` now that the Next.js skeleton is on `main`.
+**What I did:**
+- Merged `main` (skeleton, Member 4 tracker, Jensen's data definitions) into my branch twice; resolved `HANDOFF.md` conflicts by keeping every line.
+- Converted mock data to the new shared shapes (Jensen's request).
+- Wrote the services, 43 tests, and both pages; checked them in Chromium on desktop and phone width.
+**Files changed:**
+- `src/services/resume-interview/*`: new — all Member 3 logic.
+- `src/app/documents/page.tsx`, `src/app/documents/DocumentsWorkspace.tsx`: real résumé/cover-letter page.
+- `src/app/interview/page.tsx`, `src/app/interview/InterviewWorkspace.tsx`: real interview page.
+- `src/app/_resume-interview/shared.tsx`, `resume-interview.module.css`: shared picker, approval prompt, styles (uses Member 5's CSS variables; doesn't edit `globals.css`).
+- `src/data/resume-interview/mock-internships.json`, `mock-profile-maya.json`: new shared shapes.
+- `tests/resume-interview/*.test.ts`: new.
+- `docs/resume-interview-spec.md`: marked implemented; inputs, code map, limits, open questions updated.
+**Decisions made:**
+- Logic in `src/services/resume-interview/` (Jensen: shared logic goes in `src/services`), not `src/agents/`.
+- Rules run on draft TEXT, so student edits are checked too. Placeholders and skills the student lacks can only be fixed by editing; other flags can be confirmed ("Confirmed by student").
+- Approving a draft and copying it each need their own approval, tied to the draft version.
+**Problems / bugs found:**
+- Fixed during the work: the graduation date "2028-05-15" let "15" pass the made-up-number check (dates now only vouch for the year); a shared GPA wasn't counted as the student's own data; duplicate accessible names on the draft cards.
+**Next steps:**
+1. See "Next steps" under Current status.
 
 ### 2026-11-06 | Reviewed Laurent's PR #8
 **Goal:** Review the Member 2 PR, since it touches Member 3's inputs.
