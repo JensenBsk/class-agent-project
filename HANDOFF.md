@@ -6,6 +6,25 @@ The single place to see where the whole project stands. Agents update this at th
 **Due date:** _YYYY-MM-DD_
 **Last updated:** 2026-11-06 by Laurent
 
+## How to start (every team member)
+
+Find your member number below, then start your AI agent session like this:
+
+1. Paste the **full project brief** first (it's saved in `docs/project-brief.md`).
+2. Add this sentence at the end, filled in with your number and workstream:
+
+   > I am Member [number]. My assigned workstream is [workstream]. Follow the shared project brief, inspect the repository first, and only then begin implementation.
+
+   Example: *"I am Member 2. My assigned workstream is Profile creation, internship data, matching and ranking. Follow the shared project brief, inspect the repository first, and only then begin implementation."*
+
+| Member | Main responsibility | Branch |
+| --- | --- | --- |
+| 1 | Product requirements, use case, business case, documentation | `feature/product-docs` |
+| 2 | Profile creation, internship data, matching and ranking | `feature/matching` |
+| 3 | Résumé, cover letter, and interview preparation | `feature/resume-interview` |
+| 4 | Application tracker, workflow state, next actions | `feature/tracker-agent` |
+| 5 | UI integration, security, testing, and final demo | `feature/integration-testing` |
+
 ## Who's doing what
 
 Each person/agent only edits their own row.
@@ -47,5 +66,6 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | Laurent | Added member/workstream/branch table and start-up instructions | `HANDOFF.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-06 | Laurent | Added the CareerLaunch Agent team brief (5 workstreams, data concepts, demo, definition of done) | `docs/project-brief.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-05 | Jensen | Created project folder, agent rules, and handoff files | repo root
