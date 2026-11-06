@@ -1,0 +1,354 @@
+{
+  "_meta": {
+    "description": "Question bank for InterviewPlan generation (docs/resume-interview-spec.md §4.3). Keys map to InterviewPlan fields: behavioral -> behavioralQuestions, technical -> technicalQuestions, role -> roleQuestions, questionsToAsk -> questionsToAsk. Generic, not tied to any real company. Technical questions are tagged with normalized skill terms from skill-aliases.json.",
+    "owner": "kcarrsdsu (Member 3)",
+    "lastUpdated": "2026-11-06",
+    "selectionRules": [
+      "Pick at least 3 behavioral questions, preferring competencies the listing mentions (e.g. 'communication', 'detail-oriented').",
+      "Pick at least 1 technical question per required skill the user HAS, so they can prepare to show it.",
+      "Pick at least 1 technical question per required skill the user LACKS, labeled as a gap, with a 'how to answer honestly' tip. Never coach the user to claim the skill.",
+      "Always include 2 role questions and at least 3 questions to ask the interviewer.",
+      "Every STAR talking point must cite one of the user's real experiences (Rule R1)."
+    ]
+  },
+  "starGuide": {
+    "summary": "STAR is a way to structure answers to behavioral questions: Situation, Task, Action, Result.",
+    "steps": [
+      {
+        "letter": "S",
+        "name": "Situation",
+        "prompt": "Where and when was this? Give just enough context (1–2 sentences).",
+        "tip": "Pick a real, specific moment — not 'I usually...'."
+      },
+      {
+        "letter": "T",
+        "name": "Task",
+        "prompt": "What were you responsible for, or what problem needed solving?",
+        "tip": "Make your own role clear, especially in team projects."
+      },
+      {
+        "letter": "A",
+        "name": "Action",
+        "prompt": "What did YOU do, step by step?",
+        "tip": "Use 'I', not 'we'. This should be the longest part."
+      },
+      {
+        "letter": "R",
+        "name": "Result",
+        "prompt": "What happened because of your actions? What did you learn?",
+        "tip": "Use real numbers only if you know them. 'I don't have exact numbers, but...' is fine and honest."
+      }
+    ],
+    "targetLengthWords": {
+      "min": 150,
+      "max": 250
+    }
+  },
+  "feedbackHeuristics": {
+    "description": "Simple, deterministic checks for practice-mode feedback (template generator). An LLM may add more, but must keep the disclaimer.",
+    "starSignals": {
+      "situation": [
+        "when i was",
+        "at my job",
+        "last semester",
+        "during",
+        "in my class",
+        "while working"
+      ],
+      "task": [
+        "i needed to",
+        "my job was",
+        "i was responsible",
+        "the goal was",
+        "we had to",
+        "the problem was"
+      ],
+      "action": [
+        "i decided",
+        "i created",
+        "i built",
+        "i talked",
+        "i organized",
+        "i wrote",
+        "i trained",
+        "first,",
+        "then i"
+      ],
+      "result": [
+        "as a result",
+        "in the end",
+        "which led to",
+        "we finished",
+        "i learned",
+        "the outcome",
+        "afterward"
+      ]
+    },
+    "lengthRules": [
+      {
+        "maxWords": 60,
+        "note": "Your answer is quite short. Add more detail about what you did and what happened."
+      },
+      {
+        "minWords": 300,
+        "note": "Your answer is long. Try to cut the Situation down and focus on Action and Result."
+      }
+    ],
+    "weakPhrases": [
+      {
+        "phrase": "we",
+        "note": "You said 'we' a lot. Interviewers want to know what YOU did — try 'I'."
+      },
+      {
+        "phrase": "i don't know",
+        "note": "It's okay not to know. Try: 'I haven't done that yet, but here's how I'd approach it...'"
+      }
+    ],
+    "forbiddenInFeedback": [
+      "you will get the job",
+      "you will be hired",
+      "guaranteed",
+      "you won't get the job"
+    ],
+    "disclaimer": "Practice feedback only. This does not predict whether you will be hired."
+  },
+  "behavioral": [
+    {
+      "id": "bq-teamwork-1",
+      "competency": "teamwork",
+      "text": "Tell me about a time you worked on a team to complete a project.",
+      "whyAsked": "Checks how you collaborate and what role you take on a team."
+    },
+    {
+      "id": "bq-teamwork-2",
+      "competency": "teamwork",
+      "text": "Describe a time a teammate wasn't doing their share. What did you do?",
+      "whyAsked": "Checks how you handle uneven effort without blaming others."
+    },
+    {
+      "id": "bq-conflict-1",
+      "competency": "conflict",
+      "text": "Tell me about a time you disagreed with someone. How did you resolve it?",
+      "whyAsked": "Checks whether you can disagree respectfully and find a solution."
+    },
+    {
+      "id": "bq-customer-1",
+      "competency": "customer-focus",
+      "text": "Tell me about a time you dealt with an upset customer or client.",
+      "whyAsked": "Checks patience and problem-solving under pressure."
+    },
+    {
+      "id": "bq-failure-1",
+      "competency": "learning",
+      "text": "Tell me about a mistake you made. What did you learn from it?",
+      "whyAsked": "Checks honesty and whether you learn from setbacks."
+    },
+    {
+      "id": "bq-time-1",
+      "competency": "time-management",
+      "text": "Describe a time you had to balance several deadlines at once.",
+      "whyAsked": "Checks how you prioritize — important for students working and studying."
+    },
+    {
+      "id": "bq-initiative-1",
+      "competency": "initiative",
+      "text": "Tell me about something you did that went beyond what was asked of you.",
+      "whyAsked": "Checks whether you take initiative."
+    },
+    {
+      "id": "bq-leadership-1",
+      "competency": "leadership",
+      "text": "Tell me about a time you helped train or guide someone.",
+      "whyAsked": "Checks informal leadership; you don't need a manager title to answer."
+    },
+    {
+      "id": "bq-learning-1",
+      "competency": "learning",
+      "text": "Tell me about a time you had to learn a new tool or skill quickly.",
+      "whyAsked": "Interns learn constantly; this checks how you approach new things."
+    },
+    {
+      "id": "bq-detail-1",
+      "competency": "detail-oriented",
+      "text": "Describe a time when being accurate or detail-oriented really mattered.",
+      "whyAsked": "Checks care with data, money, or records."
+    },
+    {
+      "id": "bq-communication-1",
+      "competency": "communication",
+      "text": "Tell me about a time you explained something complicated to someone without your background.",
+      "whyAsked": "Checks whether you can make ideas clear to non-experts."
+    },
+    {
+      "id": "bq-pressure-1",
+      "competency": "pressure",
+      "text": "Tell me about a time you were under pressure. How did you handle it?",
+      "whyAsked": "Checks composure and planning when things get busy."
+    }
+  ],
+  "technical": [
+    {
+      "id": "tq-sql-1",
+      "skill": "sql",
+      "level": "intro",
+      "text": "What is the difference between WHERE and HAVING in SQL?",
+      "whyAsked": "Basic check that you understand filtering before and after grouping."
+    },
+    {
+      "id": "tq-sql-2",
+      "skill": "sql",
+      "level": "intro",
+      "text": "Explain an INNER JOIN vs a LEFT JOIN with an example.",
+      "whyAsked": "Joins are used in almost every analyst query."
+    },
+    {
+      "id": "tq-sql-3",
+      "skill": "sql",
+      "level": "applied",
+      "text": "How would you find the top 5 products by sales last month from a sales table?",
+      "whyAsked": "Checks if you can turn a business question into a query."
+    },
+    {
+      "id": "tq-python-1",
+      "skill": "python",
+      "level": "intro",
+      "text": "What's the difference between a list and a dictionary in Python? When would you use each?",
+      "whyAsked": "Basic data-structure check."
+    },
+    {
+      "id": "tq-python-2",
+      "skill": "python",
+      "level": "applied",
+      "text": "Walk me through how you'd read a CSV file and calculate a total for one column.",
+      "whyAsked": "Common first task for analyst interns."
+    },
+    {
+      "id": "tq-excel-1",
+      "skill": "excel",
+      "level": "intro",
+      "text": "How would you use a pivot table to summarize data?",
+      "whyAsked": "Pivot tables are a core Excel skill for operations and analytics."
+    },
+    {
+      "id": "tq-excel-2",
+      "skill": "excel",
+      "level": "intro",
+      "text": "When would you use XLOOKUP or VLOOKUP?",
+      "whyAsked": "Checks if you can combine data from two sheets."
+    },
+    {
+      "id": "tq-tableau-1",
+      "skill": "tableau",
+      "level": "applied",
+      "text": "Tell me about a dashboard you built. Who was it for and what decisions did it support?",
+      "whyAsked": "Checks if you design dashboards for an audience, not just make charts."
+    },
+    {
+      "id": "tq-dashboards-1",
+      "skill": "dashboards",
+      "level": "intro",
+      "text": "How do you choose which chart type to use for a given piece of data?",
+      "whyAsked": "Checks data-visualization judgment."
+    },
+    {
+      "id": "tq-git-1",
+      "skill": "git",
+      "level": "intro",
+      "text": "What is a branch in Git, and why would you use one?",
+      "whyAsked": "Checks basic version-control habits."
+    },
+    {
+      "id": "tq-java-1",
+      "skill": "java",
+      "level": "intro",
+      "text": "What is the difference between an interface and an abstract class in Java?",
+      "whyAsked": "Core Java object-oriented concept."
+    },
+    {
+      "id": "tq-kubernetes-1",
+      "skill": "kubernetes",
+      "level": "intro",
+      "text": "What is a container, and why would a team use Kubernetes to run containers?",
+      "whyAsked": "Checks basic cloud-infrastructure understanding."
+    },
+    {
+      "id": "tq-dsa-1",
+      "skill": "data-structures-algorithms",
+      "level": "intro",
+      "text": "When would you use a hash map instead of an array?",
+      "whyAsked": "Classic data-structures question."
+    },
+    {
+      "id": "tq-ab-1",
+      "skill": "ab-testing",
+      "level": "intro",
+      "text": "How would you tell whether a change to a website actually improved sales?",
+      "whyAsked": "Checks experimental thinking."
+    },
+    {
+      "id": "tq-scheduling-1",
+      "skill": "scheduling",
+      "level": "applied",
+      "text": "If three volunteers cancel on the morning of an event, how would you handle it?",
+      "whyAsked": "Checks practical coordination and calm problem-solving."
+    },
+    {
+      "id": "tq-ga-1",
+      "skill": "google-analytics",
+      "level": "intro",
+      "text": "What metrics would you look at to understand website traffic?",
+      "whyAsked": "Core marketing-analytics knowledge."
+    },
+    {
+      "id": "tq-seo-1",
+      "skill": "seo",
+      "level": "intro",
+      "text": "What are a few things that help a web page rank higher in search results?",
+      "whyAsked": "Basic SEO knowledge."
+    },
+    {
+      "id": "tq-copy-1",
+      "skill": "copywriting",
+      "level": "applied",
+      "text": "Write a one-sentence description of a study app for high-school students.",
+      "whyAsked": "Quick copywriting sample."
+    }
+  ],
+  "gapAnswerTip": "If you haven't used this skill yet, say so honestly. Then mention the closest thing you HAVE done and how you'd learn it — for example: 'I haven't used Kubernetes yet, but I've used Git and Python on projects, and I'm working through a beginner tutorial.' Never claim experience you don't have.",
+  "role": [
+    {
+      "id": "rq-1",
+      "text": "Why are you interested in this internship?",
+      "whyAsked": "Checks that you read the listing and have a real reason."
+    },
+    {
+      "id": "rq-2",
+      "text": "What do you know about what our team does?",
+      "whyAsked": "Checks preparation. Answer only from the listing and what you've verified on the company's own website."
+    },
+    {
+      "id": "rq-3",
+      "text": "Walk me through your résumé.",
+      "whyAsked": "Usually the first question. Aim for 60–90 seconds."
+    },
+    {
+      "id": "rq-4",
+      "text": "What skill do you hope to build in this internship?",
+      "whyAsked": "Checks self-awareness and fit with what the role teaches."
+    },
+    {
+      "id": "rq-5",
+      "text": "What is your availability during the internship?",
+      "whyAsked": "Logistics; be honest about class and work schedules."
+    }
+  ],
+  "questionsToAsk": [
+    "What does a typical week look like for an intern on this team?",
+    "What would a successful internship look like to you at the end of the summer?",
+    "Who would I be working with most closely?",
+    "What tools or skills should I brush up on before starting?",
+    "How do interns get feedback during the internship?",
+    "What do you enjoy most about working here?",
+    "What are the next steps in the interview process?"
+  ]
+}

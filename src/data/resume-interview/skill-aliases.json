@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "description": "Maps skill spellings/variants to one normalized term. Lower-case all text before lookup. Used by KeywordAnalysis (docs/resume-interview-spec.md §4.2). Proposed to share with Member 2's matching so both agree on what 'matched' means.",
+    "owner": "kcarrsdsu (Member 3)",
+    "lastUpdated": "2026-11-06",
+    "matchingNote": "Match whole words/phrases only. 'java' must NOT match 'javascript'; 'sql' may match inside 'postgresql' only via the alias list below."
+  },
+  "aliases": {
+    "sql": ["sql", "sql queries", "postgresql", "postgres", "mysql", "sqlite", "t-sql"],
+    "python": ["python", "python 3", "pandas", "python scripting"],
+    "excel": ["excel", "ms excel", "microsoft excel", "spreadsheets", "spreadsheet", "google sheets"],
+    "tableau": ["tableau", "tableau dashboards"],
+    "dashboards": ["dashboard", "dashboards", "data visualization", "reporting tools", "power bi"],
+    "git": ["git", "github", "version control"],
+    "java": ["java"],
+    "kubernetes": ["kubernetes", "k8s", "container orchestration"],
+    "dbt": ["dbt", "data build tool"],
+    "ab-testing": ["a/b testing", "ab testing", "split testing", "experimentation"],
+    "google-analytics": ["google analytics", "ga4"],
+    "seo": ["seo", "search engine optimization"],
+    "copywriting": ["copywriting", "copy writing", "app-store copy"],
+    "figma": ["figma"],
+    "data-structures-algorithms": ["data structures", "algorithms", "data structures and algorithms"],
+    "cloud": ["public cloud", "aws", "azure", "gcp", "google cloud"],
+    "customer-service": ["customer service", "customer-service", "customer issues", "customer complaints"],
+    "communication": ["communication", "written communication", "team communication", "presenting", "presentation"],
+    "scheduling": ["scheduling", "coordinating people", "coordinate volunteer schedules", "shift scheduling"],
+    "social-media": ["social media", "social media accounts"]
+  }
+}
