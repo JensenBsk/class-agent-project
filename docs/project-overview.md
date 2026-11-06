@@ -96,7 +96,6 @@ Nothing below has been tested with real students or career centers yet.
 
 | Decision | Owner | Needed before |
 | --- | --- | --- |
-| Tech stack | Members 1 and 5 | Anyone writing features |
 | Due date and competition judging criteria | Team | Scope is locked |
 | Who takes Members 2 to 5 | Team | Anyone starting work |
 | Which AI provider, if any, is used, and who pays for it | Team | Member 3 starts |

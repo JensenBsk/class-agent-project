@@ -2,7 +2,7 @@
 
 CareerLaunch Agent is an AI assistant that guides college students through the internship process, from finding opportunities to preparing for interviews, and asks for approval before anything important happens.
 
-**Status:** planning. There is no app code yet, and the tech stack hasn't been picked.
+**Status:** planning. There is no app code yet. The planned stack is Next.js with TypeScript.
 
 This is our shared project folder for our class agentic AI build. Five people, each working with their own AI agent, handing work back and forth through handoff files.
 
@@ -77,4 +77,4 @@ Teammate's agent reads the handoff files → continues the work
 1. Install Git.
 2. Clone the repo: `git clone https://github.com/JensenBsk/class-agent-project.git`
 
-There is no app to run yet. Instructions for running it, and any `.env` setup, will be added here once the tech stack is picked.
+There is no app to run yet. Instructions for running it, and any `.env` setup, will be added here once Member 5 has set up the app.
