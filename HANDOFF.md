@@ -34,6 +34,8 @@ Each person/agent only edits their own row.
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
 | laurentjedi | Member 2: `/profile` and `/internships` pages built on the Next.js app (TypeScript), with 53 tests | Ready for review | `claude/practical-gauss-xpx31v` | 2026-11-06 |
 | kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
+| laurentjedi | | Not started | | |
+| kcarrsdsu | Member 3: `/documents` and `/interview` pages built (services, 43 tests); PR #13 | Ready for review | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
 | tommybaird26-star (Member 5) | Next.js app skeleton merged into `main` (PR #12); next: help port Member 2 code | Done | `main` | 2026-11-06 |
 | BadoGoat1 | Member 4: `/tracker` page + home next-action card (logic merged in PR #11) | Ready for review | `claude/happy-euler-34uh8h` | 2026-11-06 |
 
@@ -97,6 +99,9 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
   2. **One internship list:** yes, `src/data/internships.mock.ts` replaces yours. Ids `mock-int-001` to `mock-int-004` and their `Qualification.keywords` won't change. My test "keeps Member 3's ids…" in `tests/matching/internships.test.ts` reads your `mock-internships.json`, so when you delete that file, update or delete that test in the same PR (or tell me and I'll do it).
   3. **Wiring plan:** confirmed, and the names are stable. `createProfileStore(browserStorage()).load()` returns a full `UserProfile`, or `null` if nothing is saved. `resumeText` is optional (present only if the student pasted one). `createInternshipService().getById(id)` returns the `Internship` or `null`. `missingQualifications` items are `{ label, required, severity: "critical" | "trainable" | "nice_to_have", suggestion }`. My code reads your newer Maya JSON fine.
   4. **PR #13 reviewed** (comment review on GitHub). It works with my branch. One fix: if the selected id isn't one of your 4 listings (e.g. `mock-int-006`), `/documents` silently shows Brightline. Please show a notice until you switch to `getById()`.
+- 2026-11-06 (kcarrsdsu, Member 3): Thanks, Jensen. I'll update `src/data/resume-interview/` and my spec for the new `Qualification`, `Compensation` and `WorkAuthorization` shapes next. Laurent: point 5 of my PR #8 review offered to switch to your Maya, but Jensen has since picked mine as the one demo user, so please ignore that part.
+- 2026-11-06 (kcarrsdsu, Member 3): `/documents` and `/interview` are built (PR #13). Member 2: when your profile is in the app, swap `useDemoContext()` in `src/app/_resume-interview/shared.tsx` for the real profile; I already read your `careerlaunch.selectedInternshipId` key. Member 4: approved drafts could move an Application to `ready_for_review` on `/tracker`; your call. Member 5: please add both pages to the demo script.
+- 2026-11-06 (kcarrsdsu → **laurentjedi, Member 2**) **Code: ZYN**: reply to your FRATDJ note. Please (1) open a PR for `claude/practical-gauss-xpx31v`, (2) confirm your `src/data/internships.mock.ts` replaces my mock internships, (3) confirm the wiring plan and function names, (4) review PR #13. Full details: `handoffs/HANDOFF-kcarrsdsu.md` → "For Laurent (Member 2) — Code: ZYN".
 
 ## Project log
 
@@ -108,6 +113,9 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 - 2026-11-06 | laurentjedi | Merged main (Member 4 tracker) into Member 2 branch; left start-building note for kcarrsdsu (code FRATDJ) | `HANDOFF.md`
 - 2026-11-06 | laurentjedi | Built Member 2 in Next.js/TS: profile page, ranked internships page, matching services, fictional mock data with relative deadlines, 53 tests. Did all 6 items from Jensen's PR #8 review | `src/app/profile/`, `src/app/internships/`, `src/services/matching/`, `src/data/internships.mock.ts`, `tests/matching/`, `docs/matching.md`
 - 2026-11-06 | laurentjedi | Closed PR #8 (plain JS); agreed to Next.js stack; answered Jensen and Members 3–5; will rebuild matching in TypeScript after the skeleton merges | `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
+- 2026-11-06 | kcarrsdsu | Left reply note for laurentjedi (code ZYN): PR for Member 2 branch, one internship list, wiring plan, review #13 | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-06 | kcarrsdsu | Built `/documents` (résumé + cover letter drafts, rule checks, approvals) and `/interview` (questions, STAR talking points, practice feedback); mock data on new shared shapes; 43 tests, 129/129 total pass | `src/app/documents/`, `src/app/interview/`, `src/services/resume-interview/`, `tests/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-06 | kcarrsdsu | Reviewed Laurent's PR #8 (Comment, 9 line notes); noted my mock data must move to the new shared shapes | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`
 - 2026-11-06 | BadoGoat1 | Built `/tracker` page (next actions, reminders, approval panel, status changes, saved in browser) and home "Next action" card; 86 tests pass | `src/app/tracker/`, `src/components/tracker/`, `src/agents/tracker/`, `src/app/page.tsx`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | tommybaird26-star | Merged the Next.js app skeleton into main. Everyone: `git pull`, `npm install`, `npm run dev` | PR #12, `main`
 - 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`
