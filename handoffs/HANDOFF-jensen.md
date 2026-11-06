@@ -1,6 +1,6 @@
 # Handoff: Jensen
 
-Only Jensen's agent edits this file. The teammate's agent reads it to pick up where Jensen left off.
+Only Jensen's agent edits this file. The other agents read it to pick up where Jensen left off.
 
 ## Current status
 
@@ -13,7 +13,7 @@ _Replace this section every time. Keep it to what's true right now._
 - **Broken or known bugs:**
 - **Next steps (specific enough to pick up cold):**
   1.
-- **Needs from teammate:**
+- **Needs from teammates:**
 
 ## Session log
 

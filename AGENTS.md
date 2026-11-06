@@ -5,9 +5,9 @@ Every AI agent working in this repo (Claude Code, Cursor, Copilot, ChatGPT, anyt
 ## 1. Before you start any work
 
 1. Read `HANDOFF.md` (the overall project status).
-2. Read **both** files in `handoffs/` so you know what the other person's agent did last.
+2. Read **every** file in `handoffs/` so you know what everyone else's agents did last.
 3. Check `git pull` has been run so you're on the latest code.
-4. If your task overlaps with something marked "In progress" by the other person, stop and tell your human before touching it.
+4. If your task overlaps with something marked "In progress" by someone else, stop and tell your human before touching it.
 
 ## 2. While you work
 
@@ -25,7 +25,7 @@ You are not done until both of these are updated:
 Update `handoffs/HANDOFF-<name>.md` for the human you're working with.
 - Replace the **Current status** section with the latest state.
 - Add a new entry at the TOP of the **Session log** using the template in that file.
-- Only edit YOUR person's file. Never edit the other person's handoff file.
+- Only edit YOUR person's file. Never edit anyone else's handoff file.
 
 ### b) The overall file
 Update `HANDOFF.md`:
@@ -42,7 +42,7 @@ End with a 2-3 line summary of what you did and what's next, and remind them to 
 
 - Write for someone who has zero context. Name exact files, functions, and branches.
 - Say what's done, what's half-done, and what's broken. Be honest about bugs.
-- "Next steps" must be specific enough that the other person's agent could pick it up cold.
+- "Next steps" must be specific enough that anyone else's agent could pick it up cold.
 - Keep it short. Bullets over paragraphs.
 - Use real dates (YYYY-MM-DD), not "today" or "yesterday".
 

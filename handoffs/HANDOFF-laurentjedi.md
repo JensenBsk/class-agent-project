@@ -1,8 +1,6 @@
-# Handoff: Teammate
+# Handoff: laurentjedi
 
-Rename this file to `HANDOFF-<yourname>.md` and change the title above.
-
-Only this person's agent edits this file. Jensen's agent reads it to pick up where you left off.
+Only laurentjedi's agent edits this file. The other agents read it to pick up where laurentjedi left off.
 
 ## Current status
 
@@ -15,7 +13,7 @@ _Replace this section every time. Keep it to what's true right now._
 - **Broken or known bugs:**
 - **Next steps (specific enough to pick up cold):**
   1.
-- **Needs from Jensen:**
+- **Needs from teammates:**
 
 ## Session log
 
