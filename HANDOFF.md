@@ -32,7 +32,7 @@ Each person/agent only edits their own row.
 | Person | Working on now | Status | Branch | Last update |
 | --- | --- | --- | --- | --- |
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
-| laurentjedi | | Not started | | |
+| laurentjedi | Member 2: profile, internship data, matching & ranking. Closed PR #8; will rebuild in Next.js/TypeScript once Member 5's skeleton is on `main` | Blocked (waiting on app skeleton) | `claude/practical-gauss-xpx31v` | 2026-11-06 |
 | kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
 | tommybaird26-star | | Not started | | |
 | BadoGoat1 | Member 4: tracker, statuses, next actions, approvals (`src/agents/tracker/`) | Ready for review | `claude/happy-euler-34uh8h` | 2026-11-06 |
@@ -75,6 +75,11 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 - 2026-11-06 (BadoGoat1): I'm Member 4 (application tracker + agent orchestration). Members 1 and 3: please add the tech stack to **Decisions** when chosen. I'll start then. Also need agreed fields for `Internship`/`UserProfile` before wiring the tracker to them.
 - 2026-11-06 (BadoGoat1): Member 4 code is ready in `src/agents/tracker/` (see `docs/tracker-agent-design.md`). Member 3: your `relatedVersion?` on `ApprovalRequest` is in. Member 5: please add Vitest to the app skeleton so `tests/tracker/` runs.
 - 2026-11-06 (kcarrsdsu, Member 3): Please review `docs/resume-interview-spec.md`. It uses `docs/data-definitions.md` names exactly and only ADDS optional fields (§4, marked [PROPOSED]). Jensen: OK those extras? Member 2: OK sharing `src/data/resume-interview/skill-aliases.json` for matching? Member 4: OK adding optional `relatedVersion?` to `ApprovalRequest` (§5)? Member 5: Member 3 code will wait for the Next.js skeleton on `main`.
+- 2026-11-06 (laurentjedi, Member 2): **Answers:**
+  - **Jensen:** Agreed on Next.js + TypeScript + Vitest. I closed PR #8 and will do all 6 items from your note in a new PR (TypeScript port, field renames, `userProfileId` on `MatchScore`, Member 3's Maya, deadlines relative to today, fix "CS" matching "statistics" with a test). `scripts/serve.js` and the plain-JS `package.json` are dropped.
+  - **Member 5 (tommybaird26-star):** Yes, OK to move the matching code to TypeScript. Please open a PR for your skeleton (`claude/epic-hypatia-t2ya4k`) so it can be merged. That's what Members 2 and 3 are waiting on. I'll do the port myself unless you're already on it; reply here so we don't both do it.
+  - **Member 3 (kcarrsdsu):** Yes, I'll use your `src/data/resume-interview/skill-aliases.json` for matching instead of my own list.
+  - **Member 4 (BadoGoat1):** Selecting an internship won't add it to the tracker. Your page should have an explicit "Add to tracker" action. My `Internship` will use the shared field names from `docs/data-definitions.md`.
 
 ## Project log
 
@@ -82,6 +87,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | laurentjedi | Closed PR #8 (plain JS); agreed to Next.js stack; answered Jensen and Members 3–5; will rebuild matching in TypeScript after the skeleton merges | `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
 - 2026-11-06 | BadoGoat1 | Built Member 4 tracker, status rules, next actions/reminders, approval gate + 57 tests | `src/agents/tracker/`, `tests/tracker/`, `docs/tracker-agent-design.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | BadoGoat1 | Took Member 4 (tracker + orchestration); waiting on tech stack before coding | `handoffs/HANDOFF-BadoGoat1.md`, `HANDOFF.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | kcarrsdsu | Member 3 spec (data shapes, no-fabrication rules, test plan) + mock data (Maya, 4 fictional internships, interview question bank, skill aliases) | `docs/resume-interview-spec.md`, `src/data/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
