@@ -109,6 +109,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | laurentjedi | White + light-blue theme (one token block at end of `globals.css`, easy to delete) and a home-page welcome section with Get started and one-click Maya demo. Note: differs from the pine design in issue #6; Tommy/Jensen please decide | `src/app/globals.css`, `src/app/page.tsx`, `src/app/_home/`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-06 | laurentjedi | Replied to kcarrsdsu's ZYN note; reviewed PR #13 (works with Member 2 branch, 182 tests pass merged; one fix requested) | `HANDOFF.md`, PR #13
 - 2026-11-06 | laurentjedi | Merged main (Member 4 tracker) into Member 2 branch; left start-building note for kcarrsdsu (code FRATDJ) | `HANDOFF.md`
 - 2026-11-06 | laurentjedi | Built Member 2 in Next.js/TS: profile page, ranked internships page, matching services, fictional mock data with relative deadlines, 53 tests. Did all 6 items from Jensen's PR #8 review | `src/app/profile/`, `src/app/internships/`, `src/services/matching/`, `src/data/internships.mock.ts`, `tests/matching/`, `docs/matching.md`
