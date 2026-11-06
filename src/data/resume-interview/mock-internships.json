@@ -1,0 +1,129 @@
+{
+  "_meta": {
+    "isMock": true,
+    "description": "MOCK DATA. Fictional Internship records (field names from docs/data-definitions.md) used as fixtures for Member 3 (résumé keyword analysis, cover letters, interview prep). All companies are fictional. Member 2 owns the real Internship dataset; align IDs once it exists.",
+    "owner": "kcarrsdsu (Member 3)",
+    "lastUpdated": "2026-11-06",
+    "expectedForMaya": {
+      "mock-int-001": "Strong match. SQL, Python, Tableau, Excel are already_present or can_add. dbt and A/B testing are missing_skill.",
+      "mock-int-002": "Partial match. Python, Git present. Java and Kubernetes are missing_skill and must never be added to her drafts (test T1).",
+      "mock-int-003": "Good match on Excel, scheduling, communication. Used for the cover-letter company-facts test (T11).",
+      "mock-int-004": "Low match. Google Analytics, SEO, copywriting are missing_skill."
+    }
+  },
+  "internships": [
+    {
+      "id": "mock-int-001",
+      "company": "Brightline Analytics (fictional)",
+      "title": "Data Analyst Intern",
+      "location": "San Diego, CA",
+      "workMode": "hybrid",
+      "compensation": "$24/hour",
+      "requiredQualifications": [
+        "Currently pursuing a degree in Information Systems, Statistics, Computer Science, or a related field",
+        "Experience writing SQL queries",
+        "Familiarity with Python for data analysis",
+        "Experience building dashboards in Tableau or a similar tool",
+        "Comfortable with Excel"
+      ],
+      "preferredQualifications": [
+        "Exposure to dbt",
+        "Understanding of A/B testing",
+        "Strong written communication"
+      ],
+      "applicationDeadline": "2027-01-15",
+      "applicationUrl": "https://example.com/mock/brightline/data-analyst-intern",
+      "industry": "Technology",
+      "description": "Brightline Analytics helps regional retailers understand their sales data. As a Data Analyst Intern you will clean and query sales datasets with SQL, automate small reports in Python, and build Tableau dashboards for client teams. You will present findings to your manager every two weeks. This is a 12-week summer internship, hybrid, 3 days per week in our San Diego office.",
+      "source": "mock",
+      "lastCheckedAt": "2026-11-06T00:00:00Z",
+      "isMock": true,
+      "createdAt": "2026-11-06T00:00:00Z",
+      "updatedAt": "2026-11-06T00:00:00Z"
+    },
+    {
+      "id": "mock-int-002",
+      "company": "Harborview Robotics (fictional)",
+      "title": "Software Engineering Intern — Cloud Platform",
+      "location": "Remote (US)",
+      "workMode": "remote",
+      "compensation": "$32/hour",
+      "requiredQualifications": [
+        "Pursuing a degree in Computer Science or a related field",
+        "Proficiency in Java",
+        "Experience with Kubernetes or container orchestration",
+        "Understanding of data structures and algorithms",
+        "Experience with Git"
+      ],
+      "preferredQualifications": [
+        "Python scripting",
+        "Experience with a public cloud provider",
+        "Interest in robotics"
+      ],
+      "applicationDeadline": "2026-12-01",
+      "applicationUrl": "https://example.com/mock/harborview/swe-intern-cloud",
+      "industry": "Technology",
+      "description": "Harborview Robotics builds software for warehouse robots. The Cloud Platform team runs the services that send instructions to robots. Interns write Java microservices, deploy them on Kubernetes, and add monitoring. You will be paired with a mentor and ship one feature to production by the end of the summer.",
+      "source": "mock",
+      "lastCheckedAt": "2026-11-06T00:00:00Z",
+      "isMock": true,
+      "createdAt": "2026-11-06T00:00:00Z",
+      "updatedAt": "2026-11-06T00:00:00Z"
+    },
+    {
+      "id": "mock-int-003",
+      "company": "Greenleaf Community Health (fictional)",
+      "title": "Operations Intern",
+      "location": "San Diego, CA",
+      "workMode": "in_person",
+      "compensation": "$20/hour",
+      "requiredQualifications": [
+        "Strong Excel skills",
+        "Experience with scheduling or coordinating people",
+        "Clear, friendly communication with patients and staff",
+        "Reliable and detail-oriented"
+      ],
+      "preferredQualifications": [
+        "Experience with Tableau or other reporting tools",
+        "Customer-service experience",
+        "Interest in healthcare"
+      ],
+      "applicationDeadline": "2027-02-01",
+      "applicationUrl": "https://example.com/mock/greenleaf/operations-intern",
+      "industry": "Healthcare",
+      "description": "Greenleaf Community Health is a nonprofit clinic network serving three neighborhoods in San Diego. The Operations Intern helps the clinic manager track appointment no-show rates in Excel, coordinate volunteer schedules, and prepare a monthly report for the board. The role is in person, 15–20 hours per week during the spring semester.",
+      "source": "mock",
+      "lastCheckedAt": "2026-11-06T00:00:00Z",
+      "isMock": true,
+      "createdAt": "2026-11-06T00:00:00Z",
+      "updatedAt": "2026-11-06T00:00:00Z"
+    },
+    {
+      "id": "mock-int-004",
+      "company": "Cobalt Learning Labs (fictional)",
+      "title": "Product Marketing Intern",
+      "location": "Los Angeles, CA",
+      "workMode": "in_person",
+      "compensation": "Unpaid — academic credit",
+      "requiredQualifications": [
+        "Pursuing a degree in Marketing, Communications, or a related field",
+        "Experience with Google Analytics",
+        "Knowledge of SEO",
+        "Strong copywriting portfolio"
+      ],
+      "preferredQualifications": [
+        "Experience managing social media accounts",
+        "Familiarity with Figma"
+      ],
+      "applicationDeadline": "2026-11-20",
+      "applicationUrl": "https://example.com/mock/cobalt/product-marketing-intern",
+      "industry": "Education",
+      "description": "Cobalt Learning Labs makes study apps for high-school students. The Product Marketing Intern writes app-store copy, runs SEO experiments on our blog, and reports weekly traffic from Google Analytics.",
+      "source": "mock",
+      "lastCheckedAt": "2026-11-06T00:00:00Z",
+      "isMock": true,
+      "createdAt": "2026-11-06T00:00:00Z",
+      "updatedAt": "2026-11-06T00:00:00Z"
+    }
+  ]
+}
