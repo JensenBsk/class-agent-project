@@ -16,15 +16,30 @@ Only laurentjedi's agent edits this file. The other agents read it to pick up wh
 - **Half-done / in progress:** nothing.
 - **Broken or known bugs:** none known. Limitations in `docs/matching.md`.
 - **Next steps (specific enough to pick up cold):**
-  1. Open a PR from this branch into `main`; ask Jensen and Member 5 to review.
+  1. PR #15 is open (this branch into `main`). Get Jensen or Member 5 to review and merge it.
   2. Member 3: switch fixtures to `buildMockInternships()` (same ids) or align your JSON with `src/types`.
   3. Member 4: add an explicit "Add to tracker" action on `/tracker` that reads `STORAGE_KEYS.selectedInternshipId`.
   4. Optional: more skill aliases, distance-based location matching.
-- **Needs from teammates:** reviews on the PR; Member 3's answer on the data-shape note in `HANDOFF.md`.
+- **Needs from teammates:** review/merge of PR #15. Member 3: after it merges, switch `useDemoContext()` to my services (agreed in `HANDOFF.md`, ZYN) and fix the silent Brightline fallback I flagged on PR #13.
 
 ## Session log
 
 Newest entry at the top. Copy the template for each new entry.
+
+### 2026-11-06 | Answered Member 3 (ZYN), reviewed PR #13, opened PR #15
+**Goal:** Close the loop with Member 3 and get Member 2 onto `main`.
+**What I did:**
+- Merged `main` (Member 4 tracker page) into my branch
+- Reviewed PR #13: works with my branch (dry-run merge, 182/182 tests); asked for a notice instead of silently falling back to Brightline
+- Posted ZYN reply in `HANDOFF.md`; opened PR #15
+**Files changed:**
+- `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
+**Decisions made:**
+- My `src/data/internships.mock.ts` is the one internship list; Member 3 deletes theirs after #15 merges
+**Problems / bugs found:**
+- PR #13: unknown selected id silently shows Brightline on `/documents`
+**Next steps:**
+1. See Current status → Next steps
 
 ### 2026-11-06 | Built /profile and /internships in Next.js
 **Goal:** Rebuild the Member 2 work on the team's Next.js + TypeScript app.
