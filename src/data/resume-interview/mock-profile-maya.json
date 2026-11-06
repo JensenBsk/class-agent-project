@@ -1,0 +1,137 @@
+{
+  "_meta": {
+    "isMock": true,
+    "description": "MOCK DATA. Fictional demo user 'Maya' for Member 3 (résumé, cover letter, interview) tests and demo. 'userProfile' uses the field names in docs/data-definitions.md. 'parsedResume' is Member 3-internal: the ResumeLine[] the parser should produce from userProfile.resumeText (docs/resume-interview-spec.md §4.1).",
+    "owner": "kcarrsdsu (Member 3)",
+    "lastUpdated": "2026-11-06",
+    "testHooks": {
+      "noGpa": "Rule R7 / test T7: Maya has no gpa field, so 'GPA' must never appear in her drafts.",
+      "rl-5": "Rule R5 / test T6: 'Helped organize' must not become 'Led' without a scope_escalation warning.",
+      "rl-6": "Rule R4 / test T5: no numbers given, so a metric rewrite needs a [X ...] placeholder.",
+      "canAdd": "SQL and Tableau are in skills and experience[3] but NOT in resumeText -> 'can_add' (test T2).",
+      "missingSkills": "Maya does NOT have Java, Kubernetes, dbt, A/B testing, Google Analytics, SEO, copywriting, or Figma. These must never appear in her drafts (test T1)."
+    }
+  },
+  "userProfile": {
+    "id": "mock-profile-maya",
+    "name": "Maya Rivera",
+    "school": "Pacific Coast State University",
+    "major": "Management Information Systems",
+    "graduationDate": "2028-05-15",
+    "skills": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Tableau",
+      "Git",
+      "Customer service",
+      "Team communication",
+      "Scheduling"
+    ],
+    "experience": [
+      {
+        "type": "work",
+        "title": "Shift Lead (part-time)",
+        "organization": "Bean Counter Café",
+        "startDate": "2025-01-06",
+        "description": "Open and close the café 3 days a week, train new baristas, count the register, and handle customer issues."
+      },
+      {
+        "type": "volunteer",
+        "title": "Events Volunteer",
+        "organization": "PCSU Information Systems Club",
+        "startDate": "2025-09-01",
+        "description": "Helped organize a semester-long workshop series and kept the RSVP spreadsheet up to date."
+      },
+      {
+        "type": "volunteer",
+        "title": "Volunteer Math Tutor",
+        "organization": "Harbor Heights Community Library",
+        "startDate": "2024-06-01",
+        "endDate": "2025-05-31",
+        "description": "Tutored middle-school students in math once a week."
+      },
+      {
+        "type": "project",
+        "title": "Team Project — Campus Parking Dashboard",
+        "organization": "MIS 320: Database Design (course project)",
+        "startDate": "2025-09-01",
+        "endDate": "2025-12-12",
+        "description": "Worked in a team of 4. Designed a SQL database of campus parking data, wrote queries for peak-hour usage, and built a Tableau dashboard presented to the class."
+      },
+      {
+        "type": "project",
+        "title": "Budget Tracker Script",
+        "organization": "Personal project",
+        "startDate": "2025-06-01",
+        "endDate": "2025-07-31",
+        "description": "Wrote a Python script that reads bank CSV exports and summarizes monthly spending by category. Code on GitHub."
+      }
+    ],
+    "preferredIndustries": ["Technology", "Healthcare", "Education"],
+    "preferredLocations": ["San Diego, CA"],
+    "remotePreference": "hybrid",
+    "availability": "Summer 2027, full-time; Spring 2027, up to 20 hours/week",
+    "salaryExpectation": 20,
+    "workAuthorization": "Authorized to work in the US",
+    "careerGoals": "Start a career in data analytics, using data to help organizations make better decisions.",
+    "resumeText": "MAYA RIVERA\n\nEDUCATION\nPacific Coast State University — B.S. Management Information Systems, expected May 2028\nRelevant coursework: Database Design, Business Statistics, Intro to Programming (Python)\n\nEXPERIENCE\nShift Lead (part-time) — Bean Counter Café, Jan 2025–Present\n- Open and close the café and count the register\n- Train new baristas\n- Handle customer complaints\n\nEvents Volunteer — PCSU Information Systems Club, Sep 2025–Present\n- Helped organize workshop series and kept RSVP spreadsheet\n\nVolunteer Math Tutor — Harbor Heights Community Library, Jun 2024–May 2025\n- Tutored middle school students in math\n\nPROJECTS\nCampus Parking Dashboard — MIS 320 course project, Fall 2025\n- Made a database and dashboard for parking data with my team\n\nBudget Tracker Script — personal project, Summer 2025\n- Python script to summarize spending\n\nSKILLS\nPython, Excel, Git, customer service",
+    "createdAt": "2026-11-06T00:00:00Z",
+    "updatedAt": "2026-11-06T00:00:00Z"
+  },
+  "parsedResume": [
+    {
+      "id": "rl-1",
+      "section": "education",
+      "heading": "Pacific Coast State University — B.S. Management Information Systems, expected May 2028",
+      "text": "Relevant coursework: Database Design, Business Statistics, Intro to Programming (Python)"
+    },
+    {
+      "id": "rl-2",
+      "section": "experience",
+      "heading": "Shift Lead (part-time) — Bean Counter Café, Jan 2025–Present",
+      "text": "Open and close the café and count the register"
+    },
+    {
+      "id": "rl-3",
+      "section": "experience",
+      "heading": "Shift Lead (part-time) — Bean Counter Café, Jan 2025–Present",
+      "text": "Train new baristas"
+    },
+    {
+      "id": "rl-4",
+      "section": "experience",
+      "heading": "Shift Lead (part-time) — Bean Counter Café, Jan 2025–Present",
+      "text": "Handle customer complaints"
+    },
+    {
+      "id": "rl-5",
+      "section": "experience",
+      "heading": "Events Volunteer — PCSU Information Systems Club, Sep 2025–Present",
+      "text": "Helped organize workshop series and kept RSVP spreadsheet"
+    },
+    {
+      "id": "rl-6",
+      "section": "experience",
+      "heading": "Volunteer Math Tutor — Harbor Heights Community Library, Jun 2024–May 2025",
+      "text": "Tutored middle school students in math"
+    },
+    {
+      "id": "rl-7",
+      "section": "projects",
+      "heading": "Campus Parking Dashboard — MIS 320 course project, Fall 2025",
+      "text": "Made a database and dashboard for parking data with my team"
+    },
+    {
+      "id": "rl-8",
+      "section": "projects",
+      "heading": "Budget Tracker Script — personal project, Summer 2025",
+      "text": "Python script to summarize spending"
+    },
+    {
+      "id": "rl-9",
+      "section": "skills",
+      "text": "Python, Excel, Git, customer service"
+    }
+  ]
+}
