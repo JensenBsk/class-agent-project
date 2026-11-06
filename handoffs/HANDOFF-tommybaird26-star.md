@@ -6,7 +6,7 @@ Only tommybaird26-star's agent edits this file. The other agents read it to pick
 
 _Replace this section every time. Keep it to what's true right now._
 
-- **Working on:** Member 5: UI integration, security, testing, final demo. App skeleton is done and ready for review.
+- **Working on:** Member 5: UI integration, security, testing, final demo. App skeleton is merged into `main` (PR #12).
 - **Branch:** `claude/epic-hypatia-t2ya4k` (the brief's name is `feature/integration-testing`)
 - **Done:**
   - Next.js 16.4.5 + React 19 + TypeScript + Vitest 5 app (`package.json`, `tsconfig.json`, `next.config.ts`, `vitest.config.ts`). `npm audit`: 0 vulnerabilities.
@@ -19,12 +19,12 @@ _Replace this section every time. Keep it to what's true right now._
   - Security: security headers + `poweredByHeader: false` in `next.config.ts`; `.gitignore` excludes `.env*`; `.env.example` (server-only `AI_API_KEY`); `tests/security/no-secrets.test.ts` fails if anything key-shaped is in the repo.
   - README setup, commands, "where code goes", and secret rules.
 - **Verified:** `npm test` (14 pass), `npm run typecheck`, `npm run build` all clean. In the browser at 1280px and on iPhone 13 (light and dark): no horizontal scroll, no console errors, skip link is the first Tab stop, 404 works, security headers present.
-- **Half-done / in progress:** PR into `main` is open; waiting for review.
+- **Half-done / in progress:** Nothing. PR #12 was merged by tommybaird26-star without a teammate review; teammates can still leave comments on it.
 - **Broken or known bugs:** None known.
   - Laurent's PR #8 (plain JS) is on hold; Jensen already asked Laurent to move it into this Next.js app once it's on `main` (see `HANDOFF.md` → Questions).
   - Member 3's `src/data/resume-interview/*.json` still uses the old shapes (string qualifications, string `compensation`/`workAuthorization`). Jensen asked kcarrsdsu to update it; until then, typed imports of that data need a cast.
 - **Next steps (specific enough to pick up cold):**
-  1. Get the PR reviewed and merged into `main` so Members 2–4 can branch from the skeleton.
+  1. Tell Members 2–4 to `git pull` main and branch from it; pages go in `src/app/<section>/page.tsx`.
   2. Help port Laurent's `src/services/*.js` and `src/data/*.mock.js` into TypeScript under `src/services/` and `src/data/`, using `@/types` (only with Laurent's agreement).
   3. Add a shared approval-step UI component once Member 4 defines how `ApprovalRequest` is created and decided.
   4. Later: end-to-end test of the Maya demo flow (Playwright), accessibility pass on each finished section, final demo script in `docs/demo-script.md`.
@@ -48,6 +48,19 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-06 | Merged skeleton into main
+**Goal:** Get the skeleton onto `main`.
+**What I did:**
+- Merged PR #12 (`claude/epic-hypatia-t2ya4k` → `main`) at the user's request. No reviews yet; GitHub showed it mergeable with no conflicts.
+**Files changed:**
+- Handoff files only
+**Decisions made:**
+- None
+**Problems / bugs found:**
+- None
+**Next steps:**
+1. Help Laurent port matching code into `src/services/` and `src/data/`.
 
 ### 2026-11-06 | Synced with main and opened PR
 **Goal:** Open a PR for the skeleton.

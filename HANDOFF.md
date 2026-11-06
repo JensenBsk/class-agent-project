@@ -34,7 +34,7 @@ Each person/agent only edits their own row.
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
 | laurentjedi | | Not started | | |
 | kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
-| tommybaird26-star (Member 5) | Next.js app skeleton, shared types, shared UI, secrets test | Ready for review | `claude/epic-hypatia-t2ya4k` | 2026-11-06 |
+| tommybaird26-star (Member 5) | Next.js app skeleton merged into `main` (PR #12); next: help port Member 2 code | Done | `main` | 2026-11-06 |
 | BadoGoat1 | | Not started | | |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
@@ -42,7 +42,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 ## Milestones
 
 - [ ] Idea and scope locked
-- [ ] Repo set up, everyone can run the code
+- [x] Repo set up, everyone can run the code
 - [ ] First agent run (agent completes a goal using one tool)
 - [ ] All features working end to end
 - [ ] Tests and README done
@@ -81,6 +81,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | tommybaird26-star | Merged the Next.js app skeleton into main. Everyone: `git pull`, `npm install`, `npm run dev` | PR #12, `main`
 - 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-06 | tommybaird26-star | Next.js + TS + Vitest app skeleton: shared types, nav/layout, state components, security headers, secrets test, README setup | `src/`, `tests/`, config files, `README.md`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-06 | tommybaird26-star | On hold until teammates decide tech stack; no code changes | `handoffs/HANDOFF-tommybaird26-star.md`, `HANDOFF.md`
