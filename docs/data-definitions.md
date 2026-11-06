@@ -1,6 +1,6 @@
 # CareerLaunch Agent: Shared Data Definitions
 
-Owner: Member 1 (Jensen). **Status: proposed. Everyone must agree on this before writing features.**
+Owner: Member 1 (Jensen). **Status: current as of 2026-11-05.** This version includes the best parts of Member 2's and Member 3's work, so build against it.
 
 Every workstream uses these same names, so the pieces fit together at integration. To change something, propose it in `HANDOFF.md` under **Decisions**, because a change here can break another person's work.
 
@@ -30,13 +30,15 @@ Owner: Member 2. **Never add protected characteristics such as race, gender, age
 | preferredLocations | string[] | |
 | remotePreference | enum | `remote`, `in_person`, `hybrid`, `no_preference` |
 | availability | string | For example, "Summer 2027, full-time" |
-| salaryExpectation? | number | Hourly, in USD |
-| workAuthorization | string | Used only to check a listing's stated requirement |
+| salaryExpectation? | number | Lowest acceptable hourly pay, in USD |
+| workAuthorization | WorkAuthorization | Used only to check a listing's stated requirement |
 | careerGoals | string | |
 | resumeText? | string | Text of the existing résumé |
 | portfolioUrl? | string | |
 
-**ExperienceItem:** `type` (`work`, `volunteer`, `project`), `title`, `organization`, `startDate`, `endDate?`, `description`.
+**ExperienceItem:** `type` (`work`, `volunteer`, `project`), `title`, `organization`, `startDate?`, `endDate?`, `description?`, `skills?` (string[]).
+
+**WorkAuthorization:** `authorizedToWork` and `needsSponsorship`, each a boolean, or `null` if the user hasn't answered.
 
 ## Internship
 
@@ -48,16 +50,28 @@ Owner: Member 2.
 | title | string | Required |
 | location | string | |
 | workMode | enum | `remote`, `in_person`, `hybrid` |
-| compensation? | string | Only if listed |
-| requiredQualifications | string[] | |
-| preferredQualifications | string[] | |
+| compensation? | Compensation | Only if listed |
+| requiredQualifications | Qualification[] | |
+| preferredQualifications | Qualification[] | |
 | applicationDeadline? | date | |
 | applicationUrl | string | |
 | industry | string | |
+| careerTags? | string[] | Lowercase interest tags |
+| relevantMajors? | string[] | Lowercase. Empty or missing means any major |
+| experienceLevel? | enum | `none`, `some`, `significant` |
+| sponsorshipAvailable? | boolean | |
 | description | string | |
 | source | string | Where the listing came from |
 | lastCheckedAt | timestamp | |
 | isMock | boolean | Required. If `true`, the UI must label it as mock data |
+
+**Compensation:** `hourlyMin?`, `hourlyMax?`, `note`.
+
+**Qualification:** `label` (the text people read), `type` (`skill`, `education`, `experience`, `other`), `keywords` (string[], lowercase terms that satisfy it), `trainable` (boolean, true if a student could reasonably learn it before starting).
+
+**Mock data rules**
+- Set mock deadlines relative to today, so listings don't expire before the demo.
+- There is one demo user: Maya Rivera in `src/data/resume-interview/mock-profile-maya.json`.
 
 ## MatchScore
 
@@ -68,14 +82,21 @@ Owner: Member 2.
 | userProfileId | string | |
 | internshipId | string | |
 | score | number | 0 to 100 |
+| label | string | `Strong match`, `Good match`, `Possible match` or `Weak match` |
+| eligibility | Eligibility | |
 | factors | MatchFactor[] | The explanation behind the score |
-| matchedRequirements | string[] | |
+| matchedQualifications | MatchedQualification[] | |
 | missingQualifications | MissingQualification[] | |
-| recommendedNextStep | string | |
+| reasons | string[] | Facts: why it matches |
+| nextSteps | string[] | Recommendations: what to do next |
 
-**MatchFactor:** `name` (`skills`, `academic_background`, `career_interests`, `experience_level`, `location`, `work_authorization`, `deadline_urgency`, `compensation`, `work_mode`), `score` (0 to 100), `explanation`.
+**MatchFactor:** `key` (`skills`, `academics`, `interests`, `experience`, `location`, `workAuthorization`, `deadline`, `compensation`), `label`, `weight` (maximum points), `points`, `explanation`. Weights add up to 100, and `location` covers both location and remote preference.
 
-**MissingQualification:** `qualification`, `severity` (`critical` or `trainable`).
+**Eligibility:** `status` (`eligible`, `blocked`, `expired`), `reasons` (string[]).
+
+**MatchedQualification:** `label`, `required` (boolean), `evidence`.
+
+**MissingQualification:** `label`, `required` (boolean), `severity` (`critical`, `trainable`, `nice_to_have`), `suggestion`.
 
 ## ResumeDraft
 
@@ -97,6 +118,8 @@ Owner: Member 3.
 ## CoverLetterDraft
 
 Owner: Member 3. Uses the same `userProfileId`, `internshipId`, `content`, `claimsToVerify`, `status` and `isAiGenerated` fields as `ResumeDraft`.
+
+**Approved extras:** `ResumeDraft`, `CoverLetterDraft` and `InterviewPlan` may also use the optional fields in section 4 of `docs/resume-interview-spec.md`. Other workstreams can ignore them. A claim backed only by a `user_confirmation` must be labeled "confirmed by student," not "proven."
 
 ## Application
 

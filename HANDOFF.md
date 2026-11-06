@@ -56,6 +56,8 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 | Date | Decision | Why | Who |
 | --- | --- | --- | --- |
+| 2026-11-05 | After reviewing PR #8, Next.js with TypeScript stays. Use the App Router in `src/app`, not a `src/pages` folder. Shared logic goes in `src/services` | PR #8 proposed plain JavaScript. Keeping one stack avoids a rival setup, and most of its logic is plain functions that can move across | Jensen (Member 1). Member 5 still needs to confirm |
+| 2026-11-05 | `docs/data-definitions.md` updated: takes Member 2's `Qualification` and `MatchScore` shapes, and approves Member 3's optional extras. Member 3's Maya is the one demo user | Member 2's matching crashed on Member 3's data, so everyone needs one shape | Jensen (Member 1) |
 | 2026-11-05 | Tech stack: Next.js with TypeScript in one app. Tests use Vitest. Internships come from labeled mock data, with no database at first. AI calls and keys stay on the server. Host on Vercel | One codebase for all five people, and shared types match `docs/data-definitions.md` | Jensen (Member 1). Member 5 still needs to confirm |
 | 2026-11-05 | Jensen is Member 1 | Claimed the product, research and documentation workstream | Jensen |
 | 2026-11-06 | `docs/project-brief.md` is the shared source of truth for scope, terminology, workstreams, and definition of done | Team expanded to 5 members; everyone needs one brief | Laurent |
@@ -63,6 +65,8 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 ## Questions for each other
 
 - _Leave questions for your teammates here instead of editing their handoff files._
+- 2026-11-05 (Jensen, for Laurent): PR #8 is good work but is on hold. After the Next.js setup is on `main`, please: (1) move your logic into the new app and drop `scripts/serve.js`; (2) rename fields to match `docs/data-definitions.md` (`deadline` to `applicationDeadline`, `lastChecked` to `lastCheckedAt` as a timestamp, `in-person` to `in_person`, `any` to `no_preference`, `minHourlyRate` to `salaryExpectation`, `nice-to-have` to `nice_to_have`), and add `userProfileId` to `MatchScore`; (3) use Member 3's Maya; (4) set mock deadlines relative to today; (5) fix major matching so "CS" doesn't match "statistics", with a test; (6) move your notes into `handoffs/HANDOFF-laurentjedi.md`.
+- 2026-11-05 (Jensen, for kcarrsdsu): Your optional extras are approved. Please update `src/data/resume-interview/` and your spec for the new `Qualification`, `Compensation` and `WorkAuthorization` shapes. `relatedVersion?` is still Member 4's call.
 - 2026-11-05 (Jensen): Proposal: lead with "provably true" instead of "complete workflow," and add Proof Receipts and Gap-to-Proof Sprints to the prototype. Reasoning is in `docs/competitor-research.md` and `docs/standout-ideas.md`. Please reply here with yes, no or changes.
 - 2026-11-05 (Jensen): Everyone: pick two students to interview using `docs/validation-kit.md`. Which school's career center should we approach, and which tools does it already provide?
 - 2026-11-05 (Jensen): Tech stack is recorded under Decisions. Member 5, please confirm or object, then set up the shared app so everyone can branch from it.
@@ -77,6 +81,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
 - 2026-11-06 | kcarrsdsu | Member 3 spec (data shapes, no-fabrication rules, test plan) + mock data (Maya, 4 fictional internships, interview question bank, skill aliases) | `docs/resume-interview-spec.md`, `src/data/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-05 | Jensen | Reviewed PRs #7 and #8, merged #7, held #8, and updated the shared data definitions | `docs/data-definitions.md`, `HANDOFF.md`
 - 2026-11-05 | Jensen | Added competitor research, standout ideas and validation kit, and updated the business case | `docs/`, `README.md`, branch `jensen/market-research`
 - 2026-11-05 | Jensen | Recorded the tech stack decision | `HANDOFF.md`, `README.md`, `docs/project-overview.md`
 - 2026-11-05 | Jensen | Wrote product overview, business case, user stories and shared data definitions, and updated the README | `docs/`, `README.md`, branch `feature/product-docs`
