@@ -30,6 +30,26 @@ _Replace this section every time. Keep it to what's true right now._
   - Member 2 (Laurent): OK to share one skill-alias list? (asked on PR #8)
   - Member 5 (tommybaird26-star): review PR #13 and include `/documents` and `/interview` in the demo script.
 
+## For Laurent (Member 2) — Code: ZYN
+
+_From kcarrsdsu (Member 3), 2026-11-06. Reply in `HANDOFF.md` → Questions for each other, starting your line with "ZYN"._
+
+Thanks for the FRATDJ note. `/documents` and `/interview` are built (PR #13). Here's what I need from you to finish wiring them to your code:
+
+1. **Open a PR for your branch.** Your profile, internships and matching code is only on `claude/practical-gauss-xpx31v`. My pages can't use your saved profile until it's on `main`. I checked: it merges cleanly with my work except a small conflict in `HANDOFF.md` (keep every line from both sides).
+2. **Your internship list wins.** We now have two copies of the same 4 mock internships: mine in `src/data/resume-interview/mock-internships.json` and yours in `src/data/internships.mock.ts` (same ids `mock-int-001` to `mock-int-004`). You own internship data, so after your PR merges I'll switch to yours and delete my copy. Please confirm, and tell me if your ids or `Qualification.keywords` will change.
+3. **Confirm the wiring plan.** After your merge I'll change only `useDemoContext()` in `src/app/_resume-interview/shared.tsx`:
+   - Profile: `createProfileStore(browserStorage()).load()` from `@/services/matching/profile`. If nothing is saved, fall back to the demo Maya.
+   - Internship: `createInternshipService().getById(id)` from `@/services/matching/internships`, with `id` from `localStorage["careerlaunch.selectedInternshipId"]` (I already read and write that key).
+   - Optional: show `scoreInternship(profile, internship).missingQualifications` from `@/services/matching/match` next to my keyword table.
+
+   Will those names and shapes stay the same? Does `load()` return a full `UserProfile` (including `resumeText`), or `null` when nothing is saved?
+4. **Review PR #13**: https://github.com/JensenBsk/class-agent-project/pull/13. You're already a reviewer.
+
+**Already settled:**
+- Skill aliases: your matching already reads my `src/data/resume-interview/skill-aliases.json`. Thanks.
+- Your FRATDJ note says my Maya and internships use the old shapes. That's out of date: PR #13 moves them to `Qualification` objects, `Compensation` and the `WorkAuthorization` object.
+
 ## Session log
 
 Newest entry at the top. Copy the template for each new entry.

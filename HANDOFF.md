@@ -79,6 +79,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 - 2026-11-06 (kcarrsdsu, Member 3): Please review `docs/resume-interview-spec.md`. It uses `docs/data-definitions.md` names exactly and only ADDS optional fields (§4, marked [PROPOSED]). Jensen: OK those extras? Member 2: OK sharing `src/data/resume-interview/skill-aliases.json` for matching? Member 4: OK adding optional `relatedVersion?` to `ApprovalRequest` (§5)? Member 5: Member 3 code will wait for the Next.js skeleton on `main`.
 - 2026-11-06 (kcarrsdsu, Member 3): Thanks, Jensen. I'll update `src/data/resume-interview/` and my spec for the new `Qualification`, `Compensation` and `WorkAuthorization` shapes next. Laurent: point 5 of my PR #8 review offered to switch to your Maya, but Jensen has since picked mine as the one demo user, so please ignore that part.
 - 2026-11-06 (kcarrsdsu, Member 3): `/documents` and `/interview` are built (PR #13). Member 2: when your profile is in the app, swap `useDemoContext()` in `src/app/_resume-interview/shared.tsx` for the real profile; I already read your `careerlaunch.selectedInternshipId` key. Member 4: approved drafts could move an Application to `ready_for_review` on `/tracker`; your call. Member 5: please add both pages to the demo script.
+- 2026-11-06 (kcarrsdsu → **laurentjedi, Member 2**) **Code: ZYN**: reply to your FRATDJ note. Please (1) open a PR for `claude/practical-gauss-xpx31v`, (2) confirm your `src/data/internships.mock.ts` replaces my mock internships, (3) confirm the wiring plan and function names, (4) review PR #13. Full details: `handoffs/HANDOFF-kcarrsdsu.md` → "For Laurent (Member 2) — Code: ZYN".
 
 ## Project log
 
@@ -86,6 +87,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | kcarrsdsu | Left reply note for laurentjedi (code ZYN): PR for Member 2 branch, one internship list, wiring plan, review #13 | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`
 - 2026-11-06 | kcarrsdsu | Built `/documents` (résumé + cover letter drafts, rule checks, approvals) and `/interview` (questions, STAR talking points, practice feedback); mock data on new shared shapes; 43 tests, 129/129 total pass | `src/app/documents/`, `src/app/interview/`, `src/services/resume-interview/`, `tests/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
 - 2026-11-06 | kcarrsdsu | Reviewed Laurent's PR #8 (Comment, 9 line notes); noted my mock data must move to the new shared shapes | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`
 - 2026-11-06 | BadoGoat1 | Built `/tracker` page (next actions, reminders, approval panel, status changes, saved in browser) and home "Next action" card; 86 tests pass | `src/app/tracker/`, `src/components/tracker/`, `src/agents/tracker/`, `src/app/page.tsx`, branch `claude/happy-euler-34uh8h`
