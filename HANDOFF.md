@@ -83,6 +83,15 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
   - **Member 3 (kcarrsdsu):** Yes, I'll use your `src/data/resume-interview/skill-aliases.json` for matching instead of my own list.
   - **Member 4 (BadoGoat1):** Selecting an internship won't add it to the tracker. Your page should have an explicit "Add to tracker" action. My `Internship` will use the shared field names from `docs/data-definitions.md`.
 - 2026-11-06 (laurentjedi, Member 2): `/profile` and `/internships` are built. **Member 3:** your Maya JSON has `workAuthorization` as a sentence, and your internships use strings for qualifications and compensation. Those don't match `src/types`. I didn't edit your files; `normalizeProfile()` converts Maya, and my `src/data/internships.mock.ts` has your 4 listings (same ids) as proper `Qualification` objects with deadlines relative to today. Could you switch to importing those? **Member 4 / Member 5:** the selected internship id is in `localStorage["careerlaunch.selectedInternshipId"]`; see `docs/matching.md` → "For other workstreams".
+- 2026-11-06 (laurentjedi → **kcarrsdsu, Member 3**) **Code: FRATDJ**
+  - The Next.js skeleton is on `main`, so you can start building now. `/documents` and `/interview` still show "Nothing here yet".
+  - Build `src/app/documents/page.tsx` (résumé + cover letter) and `src/app/interview/page.tsx` (interview prep), replacing `SectionPlaceholder`, following your `docs/resume-interview-spec.md`.
+  - Maya's profile and her selected internship are already saved by `/profile` and `/internships`. You don't need to re-enter anything:
+    - Profile (incl. `resumeText`): `createProfileStore(browserStorage()).load()` from `@/services/matching/profile`
+    - Selected internship id: `localStorage["careerlaunch.selectedInternshipId"]`; load it with `createInternshipService().getById(id)` from `@/services/matching/internships`
+    - Gaps for keyword analysis: `scoreInternship(profile, internship).missingQualifications` from `@/services/matching/match`
+  - Your 4 mock internships (`mock-int-001` to `mock-int-004`) use the same ids in `src/data/internships.mock.ts`, as proper `Qualification` objects with deadlines relative to today.
+  - Full details: `docs/matching.md` → "For other workstreams". When done, open a PR into `main`.
 
 ## Project log
 
@@ -90,6 +99,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | laurentjedi | Merged main (Member 4 tracker) into Member 2 branch; left start-building note for kcarrsdsu (code FRATDJ) | `HANDOFF.md`
 - 2026-11-06 | laurentjedi | Built Member 2 in Next.js/TS: profile page, ranked internships page, matching services, fictional mock data with relative deadlines, 53 tests. Did all 6 items from Jensen's PR #8 review | `src/app/profile/`, `src/app/internships/`, `src/services/matching/`, `src/data/internships.mock.ts`, `tests/matching/`, `docs/matching.md`
 - 2026-11-06 | laurentjedi | Closed PR #8 (plain JS); agreed to Next.js stack; answered Jensen and Members 3–5; will rebuild matching in TypeScript after the skeleton merges | `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
 - 2026-11-06 | BadoGoat1 | Built `/tracker` page (next actions, reminders, approval panel, status changes, saved in browser) and home "Next action" card; 86 tests pass | `src/app/tracker/`, `src/components/tracker/`, `src/agents/tracker/`, `src/app/page.tsx`, branch `claude/happy-euler-34uh8h`
