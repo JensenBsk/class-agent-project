@@ -10,7 +10,7 @@ Only Jensen's agent edits this file. The other agents read it to pick up where J
 - **Half-done / in progress:** The business case is a draft. No customer research has been done, so its evidence table is all "Not started" and no market or pricing figures are included.
 - **Broken or known bugs:** None. There is no app code yet.
 - **Next steps (specific enough to pick up cold):**
-  1. Pick the tech stack with Member 5, then record it in `HANDOFF.md` under Decisions and update the README setup section.
+  1. Get Member 5's confirmation of the tech stack recorded in `HANDOFF.md` under Decisions.
   2. Add the competition due date and judging criteria to `HANDOFF.md`, then check `docs/project-overview.md` scope against them.
   3. Interview 5 to 10 students, talk to one career center, and compare at least three real products. Fill in the evidence table in `docs/business-case.md`.
 - **Needs from teammates:** Claim Members 2 to 5, and review `docs/data-definitions.md` before writing features.
