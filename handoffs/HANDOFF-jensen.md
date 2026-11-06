@@ -4,15 +4,16 @@ Only Jensen's agent edits this file. The other agents read it to pick up where J
 
 ## Current status
 
-- **Working on:** Member 1: product, research and documentation
-- **Branch:** `feature/product-docs`
-- **Done:** `docs/project-overview.md`, `docs/business-case.md`, `docs/user-stories.md`, `docs/data-definitions.md`, and the README project summary and document list
-- **Half-done / in progress:** The business case is a draft. No customer research has been done, so its evidence table is all "Not started" and no market or pricing figures are included.
+- **Working on:** Member 1: market research and getting real evidence
+- **Branch:** `jensen/market-research`
+- **Done:** `docs/project-overview.md`, `docs/business-case.md`, `docs/user-stories.md`, `docs/data-definitions.md`, `docs/competitor-research.md`, `docs/standout-ideas.md`, `docs/validation-kit.md`, and the README
+- **Half-done / in progress:** Competitor research is from web search only, with no hands-on testing. No interviews or career-center conversations have happened. `docs/standout-ideas.md` is a proposal the team hasn't agreed to.
 - **Broken or known bugs:** None. There is no app code yet.
 - **Next steps (specific enough to pick up cold):**
   1. Get Member 5's confirmation of the tech stack recorded in `HANDOFF.md` under Decisions.
   2. Add the competition due date and judging criteria to `HANDOFF.md`, then check `docs/project-overview.md` scope against them.
-  3. Interview 5 to 10 students, talk to one career center, and compare at least three real products. Fill in the evidence table in `docs/business-case.md`.
+  3. Get the team's answer on the proposal in `HANDOFF.md`, and answer Member 3's question about their proposed extra fields.
+  4. Run the tests in `docs/validation-kit.md`, then fill in the evidence table in `docs/business-case.md`.
 - **Needs from teammates:** Claim Members 2 to 5, and review `docs/data-definitions.md` before writing features.
 
 ## Session log
@@ -33,6 +34,23 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-05 | Market research and validation kit
+**Goal:** Check the competitive advantage against real products and prepare to gather real evidence.
+**What I did:**
+- Researched competitors and market evidence, proposed ways to stand out, and wrote test scripts with targets set in advance.
+**Files changed:**
+- `docs/competitor-research.md`: competitors, sourced evidence and what it changes
+- `docs/standout-ideas.md`: proposed lead message and features
+- `docs/validation-kit.md`: interview, concierge and career-center tests
+- `docs/business-case.md`: competitor findings and a new judge question
+- `README.md`, `HANDOFF.md`: document list, proposal and log
+**Decisions made:**
+- None. The new lead message is only a proposal until the team agrees.
+**Problems / bugs found:**
+- Simplify already offers matching and tracking for free, so "complete workflow" is a weak lead message.
+**Next steps:**
+1. See Current status.
 
 ### 2026-11-05 | Member 1 requirements and data definitions
 **Goal:** Turn the project brief into requirements, a business case, stories and shared data names.
