@@ -35,7 +35,7 @@ Each person/agent only edits their own row.
 | laurentjedi | | Not started | | |
 | kcarrsdsu | | Not started | | |
 | tommybaird26-star | | Not started | | |
-| BadoGoat1 | | Not started | | |
+| BadoGoat1 | Member 4: application tracker + agent orchestration | Blocked (waiting on tech stack) | `claude/happy-euler-34uh8h` | 2026-11-06 |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
 
@@ -50,7 +50,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 ## Blockers
 
-- _none yet_
+- 2026-11-06 (BadoGoat1): Member 4 tracker/orchestration work is waiting on the tech stack decision from Members 1 and 3.
 
 ## Decisions
 
@@ -62,6 +62,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 - _Leave questions for your teammates here instead of editing their handoff files._
 - 2026-11-06 (Laurent): The team is now 5 people. Who takes Members 1–5? Each person should add a `handoffs/HANDOFF-<name>.md` and a row in the table above. Also: we still need to pick a tech stack (repo has no code yet) — suggest Member 1 + Member 5 decide before anyone writes features.
+- 2026-11-06 (BadoGoat1): I'm Member 4 (application tracker + agent orchestration). Members 1 and 3: please add the tech stack to **Decisions** when chosen. I'll start then. Also need agreed fields for `Internship`/`UserProfile` before wiring the tracker to them.
 
 ## Project log
 
@@ -69,6 +70,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | BadoGoat1 | Took Member 4 (tracker + orchestration); waiting on tech stack before coding | `handoffs/HANDOFF-BadoGoat1.md`, `HANDOFF.md`, branch `claude/happy-euler-34uh8h`
 - 2026-11-05 | Jensen | Merged Laurent's project brief and start-up guide into main | `docs/project-brief.md`, `HANDOFF.md`
 - 2026-11-06 | Laurent | Added member/workstream/branch table and start-up instructions | `HANDOFF.md`, branch `claude/practical-gauss-xpx31v`
 - 2026-11-06 | Laurent | Added the CareerLaunch Agent team brief (5 workstreams, data concepts, demo, definition of done) | `docs/project-brief.md`, branch `claude/practical-gauss-xpx31v`
