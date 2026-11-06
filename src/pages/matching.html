@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareerLaunch Profile &amp; Matches</title>
+  <link rel="stylesheet" href="./matching.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>CareerLaunch Agent</h1>
+    <p class="subtitle">Step 1 – 3: Profile, internship discovery, and explainable matching</p>
+  </header>
+
+  <div class="banner" role="note">
+    <strong>Mock data:</strong> every internship shown here is a fictional listing for demonstration.
+    Your profile is stored only in this browser.
+  </div>
+
+  <main>
+    <!-- Stage 1: Profile -->
+    <section aria-labelledby="profile-heading" class="card">
+      <h2 id="profile-heading">1. Your profile</h2>
+      <p class="hint">Only fields marked * are needed to find matches. Everything else is optional.</p>
+
+      <form id="profile-form" novalidate>
+        <fieldset>
+          <legend>About you</legend>
+          <div class="grid">
+            <label>Name *<input name="name" autocomplete="name"></label>
+            <label>School<input name="school"></label>
+            <label>Major *<input name="major"></label>
+            <label>Graduation (YYYY-MM)<input name="graduationDate" placeholder="2028-05"></label>
+            <label>GPA (optional, never used for ranking)<input name="gpa" inputmode="decimal"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Skills &amp; experience</legend>
+          <label>Skills * (comma separated)<input name="skills" placeholder="Python, SQL, Excel, customer service"></label>
+          <div id="experience-list"></div>
+          <button type="button" id="add-experience" class="secondary">+ Add experience</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferences</legend>
+          <div class="grid">
+            <label>Preferred industries<input name="preferredIndustries" placeholder="Technology, Healthcare"></label>
+            <label>Preferred cities<input name="preferredLocations" placeholder="Chicago, IL"></label>
+            <label>Work style *
+              <select name="remotePreference">
+                <option value="any">Any</option>
+                <option value="remote">Remote only</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="in-person">In person</option>
+              </select>
+            </label>
+            <label>Minimum pay ($/hr)<input name="minHourlyRate" inputmode="decimal"></label>
+            <label>Availability<input name="availability" placeholder="Summer 2027, 20 hrs/week"></label>
+            <label>Need visa sponsorship? *
+              <select name="needsSponsorship">
+                <option value="">Choose…</option>
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </label>
+            <label>Authorized to work in the US?
+              <select name="authorizedToWork">
+                <option value="">Prefer not to say</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </label>
+          </div>
+          <label>Career goals<textarea name="careerGoals" rows="2"></textarea></label>
+          <label>Résumé text (used later by the Résumé Assistant)<textarea name="resumeText" rows="3"></textarea></label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">Save profile &amp; find matches</button>
+          <button type="button" id="load-demo" class="secondary">Load Maya demo profile</button>
+          <button type="button" id="undo" class="secondary" disabled>Undo last change</button>
+          <button type="button" id="delete-data" class="danger">Delete my data</button>
+        </div>
+      </form>
+
+      <div id="profile-review" aria-live="polite"></div>
+    </section>
+
+    <!-- Stage 2 + 3: Discovery & ranking -->
+    <section aria-labelledby="matches-heading" class="card">
+      <h2 id="matches-heading">2. Ranked internships</h2>
+      <div class="filters" role="search">
+        <label>Search<input id="f-query" type="search" placeholder="e.g. data, dashboard"></label>
+        <label>Industry<select id="f-industry"><option value="">All</option></select></label>
+        <label>Work mode
+          <select id="f-mode">
+            <option value="">All</option>
+            <option value="remote">Remote</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="in-person">In person</option>
+          </select>
+        </label>
+        <label class="check"><input id="f-paid" type="checkbox"> Paid only</label>
+        <label class="check"><input id="f-expired" type="checkbox"> Show expired</label>
+      </div>
+      <p id="results-meta" class="hint" aria-live="polite"></p>
+      <div id="results" aria-live="polite"></div>
+    </section>
+
+    <section aria-labelledby="next-heading" class="card" id="next-action">
+      <h2 id="next-heading">Next action</h2>
+      <p class="hint">Save your profile to get a recommendation.</p>
+    </section>
+  </main>
+
+  <dialog id="confirm-dialog">
+    <form method="dialog">
+      <p id="confirm-message"></p>
+      <div class="actions">
+        <button value="cancel" class="secondary">Cancel</button>
+        <button value="ok" class="danger">Yes, continue</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="./matchingPage.js"></script>
+</body>
+</html>
