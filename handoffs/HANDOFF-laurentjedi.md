@@ -7,27 +7,44 @@ Only laurentjedi's agent edits this file. The other agents read it to pick up wh
 - **Working on:** Member 2: profile creation, internship data, matching and ranking.
 - **Branch:** `claude/practical-gauss-xpx31v` (brief's name: `feature/matching`)
 - **Done:**
-  - Team project brief (`docs/project-brief.md`) and the "How to start" table in `HANDOFF.md` (merged via PR #3).
-  - Version 1 of matching in plain JavaScript (PR #8, now **closed**, not merged). The code is still viewable there: profile form with missing/conflicting-info checks, 11 fictional internships with de-duplication, search/filters, 8-factor explainable scoring (critical / trainable / nice-to-have gaps, facts vs. recommendations), fairness allow-list, and 29 tests.
-- **Half-done / in progress:** Nothing in code. Waiting to port.
-- **Broken or known bugs (in the PR #8 version):**
-  - Major matching uses substring checks, so short majors like "CS" can falsely match "statistics".
-  - Field names don't match `docs/data-definitions.md`, and it crashed on Member 3's data.
-  - Mock deadlines are fixed dates and will expire before the demo.
-- **Blocked on:** Member 5's Next.js skeleton (`claude/epic-hypatia-t2ya4k`) being merged into `main`.
+  - `/profile` page (`src/app/profile/`): follow-up questions, conflict checks, save / undo / load Maya demo / delete my data, with a confirmation dialog for replace and delete.
+  - `/internships` page (`src/app/internships/`): ranked cards with score, Facts vs. Recommendation sections, full score breakdown, matched and missing qualifications (critical / trainable / nice to have), filters, next-action card, select an internship. Loading, empty, error (with Try again), and success states.
+  - Services in `src/services/matching/` using the shared types: profile, internships (search, filter, de-dup), match (8 factors, explained), text (whole-word matching, Member 3's skill aliases).
+  - `src/data/internships.mock.ts`: 11 fictional listings, deadlines relative to today; includes Member 3's 4 listings with the same ids.
+  - All 6 items from Jensen's PR #8 review: TypeScript port, field renames, `userProfileId` on `MatchScore`, Member 3's Maya, relative deadlines, "CS" no longer matches "statistics" (tested).
+  - Verified: `npm test` (124 pass, 53 mine), `npm run typecheck`, `npm run build`; browser walkthrough in light/dark and at 390px width with no console errors and no horizontal scroll.
+- **Half-done / in progress:** nothing.
+- **Broken or known bugs:** none known. Limitations in `docs/matching.md`.
 - **Next steps (specific enough to pick up cold):**
-  1. Once the skeleton is on `main`, branch from it.
-  2. Port PR #8's `src/services/{profileService,internshipService,matchingService}.js` and `src/utils/text.js` to TypeScript in `src/services/`, importing types from `@/types`.
-  3. Rename fields per `docs/data-definitions.md`: `deadline`→`applicationDeadline`, `lastChecked`→`lastCheckedAt` (timestamp), `in-person`→`in_person`, `any`→`no_preference`, `minHourlyRate`→`salaryExpectation`, `nice-to-have`→`nice_to_have`; add `userProfileId` to `MatchScore`.
-  4. Use Member 3's Maya (`src/data/resume-interview/mock-profile-maya.json`) and `skill-aliases.json`. Generate mock deadlines relative to today.
-  5. Fix major matching with whole-word/alias matching; add a test that "CS" ≠ "statistics".
-  6. Port the 29 tests to Vitest; build `src/app/profile/page.tsx` and `src/app/internships/page.tsx` using `StateMessage`, `MockDataLabel`, and `AiGeneratedLabel`.
-  7. Open a new PR; ask Jensen and Member 5 to review.
-- **Needs from teammates:** Member 5: open and merge the skeleton PR.
+  1. Open a PR from this branch into `main`; ask Jensen and Member 5 to review.
+  2. Member 3: switch fixtures to `buildMockInternships()` (same ids) or align your JSON with `src/types`.
+  3. Member 4: add an explicit "Add to tracker" action on `/tracker` that reads `STORAGE_KEYS.selectedInternshipId`.
+  4. Optional: more skill aliases, distance-based location matching.
+- **Needs from teammates:** reviews on the PR; Member 3's answer on the data-shape note in `HANDOFF.md`.
 
 ## Session log
 
 Newest entry at the top. Copy the template for each new entry.
+
+### 2026-11-06 | Built /profile and /internships in Next.js
+**Goal:** Rebuild the Member 2 work on the team's Next.js + TypeScript app.
+**What I did:**
+- Merged `main` (Next.js skeleton, Member 4 tracker) into my branch
+- Ported profile, discovery, and matching to TypeScript using `src/types`; built both pages with the shared components
+- Applied all 6 items from Jensen's review; wrote 53 Vitest tests (services + pages)
+- Found and fixed a duplicate-id bug in the confirm dialogs while testing
+**Files changed:**
+- `src/app/profile/*`, `src/app/internships/*`: pages, components, CSS modules
+- `src/services/matching/*`, `src/data/internships.mock.ts`: logic and mock data
+- `tests/matching/*`: tests; `docs/matching.md`: design and interfaces
+- `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
+**Decisions made:**
+- Page styles live in CSS modules, so Member 5's `globals.css` is untouched
+- Member 3's data files weren't edited; Maya is converted on load
+**Problems / bugs found:**
+- Member 3's JSON doesn't match `src/types` (workAuthorization, qualifications, compensation). Noted in `HANDOFF.md` questions.
+**Next steps:**
+1. See Current status → Next steps
 
 <!-- TEMPLATE: copy this block
 ### YYYY-MM-DD | short title

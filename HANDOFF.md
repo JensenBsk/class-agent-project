@@ -32,7 +32,7 @@ Each person/agent only edits their own row.
 | Person | Working on now | Status | Branch | Last update |
 | --- | --- | --- | --- | --- |
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
-| laurentjedi | Member 2: profile, internship data, matching & ranking. Closed PR #8; will rebuild in Next.js/TypeScript once Member 5's skeleton is on `main` | Blocked (waiting on app skeleton) | `claude/practical-gauss-xpx31v` | 2026-11-06 |
+| laurentjedi | Member 2: `/profile` and `/internships` pages built on the Next.js app (TypeScript), with 53 tests | Ready for review | `claude/practical-gauss-xpx31v` | 2026-11-06 |
 | kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
 | tommybaird26-star (Member 5) | Next.js app skeleton merged into `main` (PR #12); next: help port Member 2 code | Done | `main` | 2026-11-06 |
 | BadoGoat1 | Member 4: tracker, statuses, next actions, approvals (`src/agents/tracker/`) | Ready for review | `claude/happy-euler-34uh8h` | 2026-11-06 |
@@ -81,6 +81,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
   - **Member 5 (tommybaird26-star):** Yes, OK to move the matching code to TypeScript. Please open a PR for your skeleton (`claude/epic-hypatia-t2ya4k`) so it can be merged. That's what Members 2 and 3 are waiting on. I'll do the port myself unless you're already on it; reply here so we don't both do it.
   - **Member 3 (kcarrsdsu):** Yes, I'll use your `src/data/resume-interview/skill-aliases.json` for matching instead of my own list.
   - **Member 4 (BadoGoat1):** Selecting an internship won't add it to the tracker. Your page should have an explicit "Add to tracker" action. My `Internship` will use the shared field names from `docs/data-definitions.md`.
+- 2026-11-06 (laurentjedi, Member 2): `/profile` and `/internships` are built. **Member 3:** your Maya JSON has `workAuthorization` as a sentence, and your internships use strings for qualifications and compensation. Those don't match `src/types`. I didn't edit your files; `normalizeProfile()` converts Maya, and my `src/data/internships.mock.ts` has your 4 listings (same ids) as proper `Qualification` objects with deadlines relative to today. Could you switch to importing those? **Member 4 / Member 5:** the selected internship id is in `localStorage["careerlaunch.selectedInternshipId"]`; see `docs/matching.md` → "For other workstreams".
 
 ## Project log
 
@@ -88,6 +89,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | laurentjedi | Built Member 2 in Next.js/TS: profile page, ranked internships page, matching services, fictional mock data with relative deadlines, 53 tests. Did all 6 items from Jensen's PR #8 review | `src/app/profile/`, `src/app/internships/`, `src/services/matching/`, `src/data/internships.mock.ts`, `tests/matching/`, `docs/matching.md`
 - 2026-11-06 | laurentjedi | Closed PR #8 (plain JS); agreed to Next.js stack; answered Jensen and Members 3–5; will rebuild matching in TypeScript after the skeleton merges | `HANDOFF.md`, `handoffs/HANDOFF-laurentjedi.md`
 - 2026-11-06 | tommybaird26-star | Merged the Next.js app skeleton into main. Everyone: `git pull`, `npm install`, `npm run dev` | PR #12, `main`
 - 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`
