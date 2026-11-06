@@ -1,10 +1,10 @@
 # Résumé, Cover Letter & Interview Prep — Spec (Member 3)
 
-**Owner:** kcarrsdsu (Member 3) · **Status:** Draft for team review · **Last updated:** 2026-11-06
+**Owner:** kcarrsdsu (Member 3) · **Status:** Implemented (v1, template generator) · **Last updated:** 2026-11-06
 
 This spec explains how the résumé, cover-letter, and interview-preparation workstream of CareerLaunch Agent will work: rules, workflow, tests, and the extra detail Member 3 needs inside each object.
 
-**`docs/data-definitions.md` (Member 1) is the shared contract and wins over this file.** Everything here uses its field names exactly. Where Member 3 needs more detail, this spec adds **optional** fields only (marked **[PROPOSED]**), so nobody else's code breaks if they ignore them. Per `data-definitions.md`, these additions need team sign-off in `HANDOFF.md` before they become official.
+**`docs/data-definitions.md` (Member 1) is the shared contract and wins over this file.** Everything here uses its field names exactly. Where Member 3 needs more detail, this spec adds **optional** fields only, so nobody else's code breaks if they ignore them. Jensen approved these extras on 2026-11-05 (`docs/data-definitions.md` → "Approved extras").
 
 Stack (per `HANDOFF.md` → Decisions): Next.js + TypeScript, Vitest for tests, mock data, AI calls server-side only. Types below are TypeScript.
 
@@ -33,12 +33,15 @@ Out of scope: profile + internship data + `MatchScore` (Member 2); `Application`
 Member 3 reads these fields and nothing else:
 
 - **`UserProfile`**: `id`, `name`, `school`, `major`, `graduationDate`, `gpa?`, `skills`, `experience: ExperienceItem[]`, `careerGoals`, `resumeText?`.
-- **`ExperienceItem`**: `type`, `title`, `organization`, `startDate`, `endDate?`, `description`.
-- **`Internship`**: `id`, `company`, `title`, `location`, `workMode`, `requiredQualifications`, `preferredQualifications`, `description`, `industry`, `isMock`.
+- **`ExperienceItem`**: `type`, `title`, `organization`, `startDate?`, `endDate?`, `description?`, `skills?`.
+- **`Internship`**: `id`, `company`, `title`, `location`, `workMode`, `requiredQualifications: Qualification[]`, `preferredQualifications: Qualification[]`, `description`, `industry`, `applicationDeadline?`, `isMock`.
+- **`Qualification`**: `label`, `type`, `keywords` (lowercase), `trainable`. Keyword analysis matches each qualification's `keywords` (plus aliases from `skill-aliases.json`) against the student's data.
 
 **GPA rule:** `data-definitions.md` says `gpa?` is set only if the user chose to share it. So: GPA may appear in a draft only when `gpa` is present.
 
-**Résumé input:** `resumeText` is a plain string. Member 3 parses it internally into lines (`ResumeLine`, §4.1) so each line can be traced. If `resumeText` is missing, drafts are built from `experience` only.
+**Résumé input:** `resumeText` is a plain string. Member 3 parses it internally into lines (`ResumeLine`, §4.1) so each line can be traced. The résumé draft tailors a copy of that text, so it needs `resumeText`; without it the page asks the student to paste their résumé. The cover letter and interview plan work from `experience` alone.
+
+**Claims the student confirms** are labeled "Confirmed by student", never "proven" (rule from `docs/data-definitions.md`).
 
 ---
 
@@ -101,7 +104,7 @@ interface InterviewPlan {
 
 ---
 
-## 4. [PROPOSED] Optional extras
+## 4. Optional extras (approved 2026-11-05)
 
 All optional. Other workstreams can ignore them. They exist so the UI can show *why* and *where from*, and so tests can prove nothing was invented.
 
@@ -239,7 +242,7 @@ generate ──▶ draft ──user approves (ApprovalRequest approved)──▶
 | User clicks "Approve cover letter" | "Approve cover letter v1 for …" | CoverLetterDraft id |
 | User clicks "Copy" / "Download" | "Copy approved résumé draft v2 to clipboard" | ResumeDraft id |
 
-**[PROPOSED] for Member 4:** an optional `relatedVersion?: number` on `ApprovalRequest`, so an approval applies only to the exact version the user saw.
+Member 4's `AgentActivityLog.requestApproval` accepts `relatedVersion`, so an approval applies only to the exact version the student saw.
 
 **Matching `AgentTask` types** (Member 4): `draft_resume`, `draft_cover_letter`, `prepare_interview`. A task waiting on the user's approval uses status `waiting_for_approval`.
 
@@ -316,13 +319,32 @@ All mock. All companies fictional.
 7. **Interview prep** (any time after picking an internship): build the `InterviewPlan` from the listing + question bank + Maya's real experiences; practice mode gives STAR-based feedback.
 8. **Record** each step as an `AgentTask` (Member 4).
 
-Suggested code location, once Member 5 sets up the app: `src/agents/resume-interview/` (logic) and `tests/resume-interview/` (Vitest). Logic stays as pure functions so it's testable without the UI or an API key.
+### Where the code is
+
+Shared logic goes in `src/services` (Jensen's 2026-11-05 decision). Logic is pure functions, so it's testable without the UI or an API key.
+
+| Path | What it does |
+| --- | --- |
+| `src/services/resume-interview/types.ts` | The optional extras in §4 (`ResumeDraftRecord`, `VerificationFlag`, `KeywordResult`, …) |
+| `src/services/resume-interview/data.ts` | Loads Maya and mock internships (deadlines = today + offset), parses `resumeText` |
+| `src/services/resume-interview/keywords.ts` | `analyzeKeywords`, `summarizeKeywords` |
+| `src/services/resume-interview/checks.ts` | Rules R2–R5, R7 on any draft text (`runChecks`), `blockingFlags`, `claimsToVerify` |
+| `src/services/resume-interview/resumeDraft.ts` | `generateResumeDraft` (template), `metricSuggestions` |
+| `src/services/resume-interview/coverLetter.ts` | `generateCoverLetter` (template; company facts from the listing only) |
+| `src/services/resume-interview/drafts.ts` | `editDraft`, `confirmFlag`, `approveDraft`, `rejectDraft`, `exportDraft` (uses Member 4's `AgentActivityLog`) |
+| `src/services/resume-interview/interviewPlan.ts` | `buildInterviewPlan` |
+| `src/services/resume-interview/practice.ts` | `givePracticeFeedback` |
+| `src/app/documents/`, `src/app/interview/` | The two pages (client components `DocumentsWorkspace`, `InterviewWorkspace`) |
+| `src/app/_resume-interview/` | Shared page pieces: internship picker, approval prompt, CSS module |
+| `tests/resume-interview/` | Vitest tests T1–T15 and more |
+
+**Known limits (v1):** the generator is a template, not an AI model. Rules run on the text, so they can't verify company claims a student types into a cover letter themselves (R6 covers generated text only). Drafts and practice answers live in page memory and reset on reload. Until Member 2's pages are in the app, both pages use the demo profile (Maya) and Member 3's mock internships, and read the selected internship from `localStorage["careerlaunch.selectedInternshipId"]`.
 
 ---
 
 ## 10. Open questions
 
-1. **Team sign-off** on the optional extras in §4 and `relatedVersion?` in §5 (Member 1 owns `data-definitions.md`; Member 4 owns `ApprovalRequest`).
+1. ~~Team sign-off on the optional extras~~: approved by Jensen 2026-11-05. Member 4's `AgentActivityLog` already supports `relatedVersion`, and Member 3 uses it.
 2. **Member 2:** OK to share `skill-aliases.json` for `MatchScore`? Where should the shared copy live?
-3. **Template vs LLM:** proposal is to build the template generator first (works without a key, deterministic tests), and add the LLM later behind the same function signature.
-4. **Member 5:** when will the Next.js app skeleton be on `main`? Member 3 code waits for it to avoid conflicting config files.
+3. **AI model:** the template generator is built. An AI model can be added later as a server route (key in `.env.local`), returning text that goes through the same `runChecks` rules.
+4. **Member 2 / Member 5:** connect the real profile and selected internship once the Profile and Internships pages are ported, replacing `useDemoContext` in `src/app/_resume-interview/shared.tsx`.
