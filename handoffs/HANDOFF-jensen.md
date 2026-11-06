@@ -12,7 +12,7 @@ Only Jensen's agent edits this file. The other agents read it to pick up where J
 - **Next steps (specific enough to pick up cold):**
   1. Get Member 5's confirmation of the tech stack recorded in `HANDOFF.md` under Decisions.
   2. Add the competition due date and judging criteria to `HANDOFF.md`, then check `docs/project-overview.md` scope against them.
-  3. Get the team's answer on the proposal in `HANDOFF.md`, and answer Member 3's question about their proposed extra fields.
+  3. Get the team's answer on the proposal in `HANDOFF.md`, and follow up with Laurent on the PR #8 fix list.
   4. Run the tests in `docs/validation-kit.md`, then fill in the evidence table in `docs/business-case.md`.
 - **Needs from teammates:** Claim Members 2 to 5, and review `docs/data-definitions.md` before writing features.
 
@@ -34,6 +34,21 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-05 | PR review and shared data definitions
+**Goal:** Review PRs #7 and #8 and give the team one data shape.
+**What I did:**
+- Merged PR #7. Held PR #8 because it uses a different stack and its matching crashed on Member 3's data.
+- Updated the data definitions with Member 2's better shapes and approved Member 3's extras.
+**Files changed:**
+- `docs/data-definitions.md`: shared shapes
+- `HANDOFF.md`: decisions, notes to Laurent and kcarrsdsu, and log
+**Decisions made:**
+- Next.js with TypeScript stays. Member 3's Maya is the one demo user.
+**Problems / bugs found:**
+- See the PR #8 fix list in `HANDOFF.md`.
+**Next steps:**
+1. See Current status.
 
 ### 2026-11-05 | Market research and validation kit
 **Goal:** Check the competitive advantage against real products and prepare to gather real evidence.
