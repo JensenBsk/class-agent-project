@@ -33,7 +33,7 @@ Each person/agent only edits their own row.
 | --- | --- | --- | --- | --- |
 | Jensen | Member 1: competitor research, standout ideas and validation kit | Ready for review | `jensen/market-research` | 2026-11-05 |
 | laurentjedi | | Not started | | |
-| kcarrsdsu | Member 3: résumé, cover letter, interview prep — spec + mock data done; code waits for app skeleton | In progress | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
+| kcarrsdsu | Member 3: `/documents` and `/interview` pages built (services, 43 tests); PR #13 | Ready for review | `claude/epic-ritchie-yx4bzq` | 2026-11-06 |
 | tommybaird26-star (Member 5) | Next.js app skeleton merged into `main` (PR #12); next: help port Member 2 code | Done | `main` | 2026-11-06 |
 | BadoGoat1 | Member 4: `/tracker` page + home next-action card (logic merged in PR #11) | Ready for review | `claude/happy-euler-34uh8h` | 2026-11-06 |
 
@@ -77,6 +77,9 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 - 2026-11-06 (BadoGoat1): Member 4 code is ready in `src/agents/tracker/` (see `docs/tracker-agent-design.md`). Member 3: your `relatedVersion?` on `ApprovalRequest` is in. Member 5: please add Vitest to the app skeleton so `tests/tracker/` runs.
 - 2026-11-06 (BadoGoat1): `/tracker` is live. Member 5: I replaced the home page "Next action" card body (it was marked for Member 4) with `HomeNextAction`; your empty state is kept as the fallback. Member 2: to add from your internships page, call `useTracker().update(({ tracker }) => tracker.add(userId, internship))` from `@/agents/tracker/useTracker`.
 - 2026-11-06 (kcarrsdsu, Member 3): Please review `docs/resume-interview-spec.md`. It uses `docs/data-definitions.md` names exactly and only ADDS optional fields (§4, marked [PROPOSED]). Jensen: OK those extras? Member 2: OK sharing `src/data/resume-interview/skill-aliases.json` for matching? Member 4: OK adding optional `relatedVersion?` to `ApprovalRequest` (§5)? Member 5: Member 3 code will wait for the Next.js skeleton on `main`.
+- 2026-11-06 (kcarrsdsu, Member 3): Thanks, Jensen. I'll update `src/data/resume-interview/` and my spec for the new `Qualification`, `Compensation` and `WorkAuthorization` shapes next. Laurent: point 5 of my PR #8 review offered to switch to your Maya, but Jensen has since picked mine as the one demo user, so please ignore that part.
+- 2026-11-06 (kcarrsdsu, Member 3): `/documents` and `/interview` are built (PR #13). Member 2: when your profile is in the app, swap `useDemoContext()` in `src/app/_resume-interview/shared.tsx` for the real profile; I already read your `careerlaunch.selectedInternshipId` key. Member 4: approved drafts could move an Application to `ready_for_review` on `/tracker`; your call. Member 5: please add both pages to the demo script.
+- 2026-11-06 (kcarrsdsu → **laurentjedi, Member 2**) **Code: ZYN**: reply to your FRATDJ note. Please (1) open a PR for `claude/practical-gauss-xpx31v`, (2) confirm your `src/data/internships.mock.ts` replaces my mock internships, (3) confirm the wiring plan and function names, (4) review PR #13. Full details: `handoffs/HANDOFF-kcarrsdsu.md` → "For Laurent (Member 2) — Code: ZYN".
 
 ## Project log
 
@@ -84,6 +87,10 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | kcarrsdsu | Fixed Laurent's PR #13 review: notice instead of a silent switch when the selected internship isn't available; recorded Laurent's ZYN answers | `src/app/_resume-interview/shared.tsx`, `tests/resume-interview/selection.test.tsx`, `handoffs/HANDOFF-kcarrsdsu.md`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-06 | kcarrsdsu | Left reply note for laurentjedi (code ZYN): PR for Member 2 branch, one internship list, wiring plan, review #13 | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-06 | kcarrsdsu | Built `/documents` (résumé + cover letter drafts, rule checks, approvals) and `/interview` (questions, STAR talking points, practice feedback); mock data on new shared shapes; 43 tests, 129/129 total pass | `src/app/documents/`, `src/app/interview/`, `src/services/resume-interview/`, `tests/resume-interview/`, branch `claude/epic-ritchie-yx4bzq`
+- 2026-11-06 | kcarrsdsu | Reviewed Laurent's PR #8 (Comment, 9 line notes); noted my mock data must move to the new shared shapes | `handoffs/HANDOFF-kcarrsdsu.md`, `HANDOFF.md`, branch `claude/epic-ritchie-yx4bzq`
 - 2026-11-06 | BadoGoat1 | Built `/tracker` page (next actions, reminders, approval panel, status changes, saved in browser) and home "Next action" card; 86 tests pass | `src/app/tracker/`, `src/components/tracker/`, `src/agents/tracker/`, `src/app/page.tsx`, branch `claude/happy-euler-34uh8h`
 - 2026-11-06 | tommybaird26-star | Merged the Next.js app skeleton into main. Everyone: `git pull`, `npm install`, `npm run dev` | PR #12, `main`
 - 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`

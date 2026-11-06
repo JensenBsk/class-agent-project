@@ -1,14 +1,20 @@
 {
   "_meta": {
     "isMock": true,
-    "description": "MOCK DATA. Fictional Internship records (field names from docs/data-definitions.md) used as fixtures for Member 3 (résumé keyword analysis, cover letters, interview prep). All companies are fictional. Member 2 owns the real Internship dataset; align IDs once it exists.",
+    "description": "MOCK DATA. Fictional Internship records using the shared types in src/types/index.ts (Qualification, Compensation). All companies are fictional. Load them with getMockInternships() in src/services/resume-interview/data.ts, which moves each applicationDeadline to today + deadlineOffsetDays so listings never expire before the demo.",
     "owner": "kcarrsdsu (Member 3)",
     "lastUpdated": "2026-11-06",
     "expectedForMaya": {
-      "mock-int-001": "Strong match. SQL, Python, Tableau, Excel are already_present or can_add. dbt and A/B testing are missing_skill.",
+      "mock-int-001": "Strong match. SQL and Tableau are can_add (in profile, not in résumé). Python and Excel are already_present. dbt and A/B testing are missing.",
       "mock-int-002": "Partial match. Python, Git present. Java and Kubernetes are missing_skill and must never be added to her drafts (test T1).",
       "mock-int-003": "Good match on Excel, scheduling, communication. Used for the cover-letter company-facts test (T11).",
       "mock-int-004": "Low match. Google Analytics, SEO, copywriting are missing_skill."
+    },
+    "deadlineOffsetDays": {
+      "mock-int-001": 45,
+      "mock-int-002": 20,
+      "mock-int-003": 70,
+      "mock-int-004": 10
     }
   },
   "internships": [
@@ -18,22 +24,98 @@
       "title": "Data Analyst Intern",
       "location": "San Diego, CA",
       "workMode": "hybrid",
-      "compensation": "$24/hour",
+      "compensation": {
+        "hourlyMin": 24,
+        "hourlyMax": 24,
+        "note": "$24/hour"
+      },
       "requiredQualifications": [
-        "Currently pursuing a degree in Information Systems, Statistics, Computer Science, or a related field",
-        "Experience writing SQL queries",
-        "Familiarity with Python for data analysis",
-        "Experience building dashboards in Tableau or a similar tool",
-        "Comfortable with Excel"
+        {
+          "label": "Currently pursuing a degree in Information Systems, Statistics, Computer Science, or a related field",
+          "type": "education",
+          "keywords": [
+            "information systems",
+            "statistics",
+            "computer science"
+          ],
+          "trainable": false
+        },
+        {
+          "label": "Experience writing SQL queries",
+          "type": "skill",
+          "keywords": [
+            "sql"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Familiarity with Python for data analysis",
+          "type": "skill",
+          "keywords": [
+            "python"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Experience building dashboards in Tableau or a similar tool",
+          "type": "skill",
+          "keywords": [
+            "tableau",
+            "power bi"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Comfortable with Excel",
+          "type": "skill",
+          "keywords": [
+            "excel"
+          ],
+          "trainable": true
+        }
       ],
       "preferredQualifications": [
-        "Exposure to dbt",
-        "Understanding of A/B testing",
-        "Strong written communication"
+        {
+          "label": "Exposure to dbt",
+          "type": "skill",
+          "keywords": [
+            "dbt"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Understanding of A/B testing",
+          "type": "skill",
+          "keywords": [
+            "a/b testing"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Strong written communication",
+          "type": "skill",
+          "keywords": [
+            "written communication"
+          ],
+          "trainable": true
+        }
       ],
-      "applicationDeadline": "2027-01-15",
+      "applicationDeadline": "2026-12-21",
       "applicationUrl": "https://example.com/mock/brightline/data-analyst-intern",
       "industry": "Technology",
+      "careerTags": [
+        "data analytics",
+        "data",
+        "analytics"
+      ],
+      "relevantMajors": [
+        "information systems",
+        "management information systems",
+        "statistics",
+        "computer science"
+      ],
+      "experienceLevel": "none",
+      "sponsorshipAvailable": false,
       "description": "Brightline Analytics helps regional retailers understand their sales data. As a Data Analyst Intern you will clean and query sales datasets with SQL, automate small reports in Python, and build Tableau dashboards for client teams. You will present findings to your manager every two weeks. This is a 12-week summer internship, hybrid, 3 days per week in our San Diego office.",
       "source": "mock",
       "lastCheckedAt": "2026-11-06T00:00:00Z",
@@ -47,22 +129,97 @@
       "title": "Software Engineering Intern — Cloud Platform",
       "location": "Remote (US)",
       "workMode": "remote",
-      "compensation": "$32/hour",
+      "compensation": {
+        "hourlyMin": 32,
+        "hourlyMax": 32,
+        "note": "$32/hour"
+      },
       "requiredQualifications": [
-        "Pursuing a degree in Computer Science or a related field",
-        "Proficiency in Java",
-        "Experience with Kubernetes or container orchestration",
-        "Understanding of data structures and algorithms",
-        "Experience with Git"
+        {
+          "label": "Pursuing a degree in Computer Science or a related field",
+          "type": "education",
+          "keywords": [
+            "computer science",
+            "software engineering"
+          ],
+          "trainable": false
+        },
+        {
+          "label": "Proficiency in Java",
+          "type": "skill",
+          "keywords": [
+            "java"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Experience with Kubernetes or container orchestration",
+          "type": "skill",
+          "keywords": [
+            "kubernetes"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Understanding of data structures and algorithms",
+          "type": "skill",
+          "keywords": [
+            "data structures",
+            "algorithms"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Experience with Git",
+          "type": "skill",
+          "keywords": [
+            "git"
+          ],
+          "trainable": true
+        }
       ],
       "preferredQualifications": [
-        "Python scripting",
-        "Experience with a public cloud provider",
-        "Interest in robotics"
+        {
+          "label": "Python scripting",
+          "type": "skill",
+          "keywords": [
+            "python"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Experience with a public cloud provider",
+          "type": "skill",
+          "keywords": [
+            "aws",
+            "azure",
+            "gcp"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Interest in robotics",
+          "type": "other",
+          "keywords": [
+            "robotics"
+          ],
+          "trainable": true
+        }
       ],
-      "applicationDeadline": "2026-12-01",
+      "applicationDeadline": "2026-11-26",
       "applicationUrl": "https://example.com/mock/harborview/swe-intern-cloud",
       "industry": "Technology",
+      "careerTags": [
+        "software engineering",
+        "cloud",
+        "robotics"
+      ],
+      "relevantMajors": [
+        "computer science",
+        "software engineering"
+      ],
+      "experienceLevel": "some",
+      "sponsorshipAvailable": false,
       "description": "Harborview Robotics builds software for warehouse robots. The Cloud Platform team runs the services that send instructions to robots. Interns write Java microservices, deploy them on Kubernetes, and add monitoring. You will be paired with a mentor and ship one feature to production by the end of the summer.",
       "source": "mock",
       "lastCheckedAt": "2026-11-06T00:00:00Z",
@@ -76,21 +233,84 @@
       "title": "Operations Intern",
       "location": "San Diego, CA",
       "workMode": "in_person",
-      "compensation": "$20/hour",
+      "compensation": {
+        "hourlyMin": 20,
+        "hourlyMax": 20,
+        "note": "$20/hour"
+      },
       "requiredQualifications": [
-        "Strong Excel skills",
-        "Experience with scheduling or coordinating people",
-        "Clear, friendly communication with patients and staff",
-        "Reliable and detail-oriented"
+        {
+          "label": "Strong Excel skills",
+          "type": "skill",
+          "keywords": [
+            "excel"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Experience with scheduling or coordinating people",
+          "type": "skill",
+          "keywords": [
+            "scheduling"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Clear, friendly communication with patients and staff",
+          "type": "skill",
+          "keywords": [
+            "communication",
+            "customer service"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Reliable and detail-oriented",
+          "type": "other",
+          "keywords": [
+            "detail-oriented"
+          ],
+          "trainable": true
+        }
       ],
       "preferredQualifications": [
-        "Experience with Tableau or other reporting tools",
-        "Customer-service experience",
-        "Interest in healthcare"
+        {
+          "label": "Experience with Tableau or other reporting tools",
+          "type": "skill",
+          "keywords": [
+            "tableau",
+            "power bi"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Customer-service experience",
+          "type": "experience",
+          "keywords": [
+            "customer service"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Interest in healthcare",
+          "type": "other",
+          "keywords": [
+            "healthcare"
+          ],
+          "trainable": true
+        }
       ],
-      "applicationDeadline": "2027-02-01",
+      "applicationDeadline": "2027-01-15",
       "applicationUrl": "https://example.com/mock/greenleaf/operations-intern",
       "industry": "Healthcare",
+      "careerTags": [
+        "operations",
+        "healthcare",
+        "nonprofit"
+      ],
+      "relevantMajors": [],
+      "experienceLevel": "none",
+      "sponsorshipAvailable": false,
       "description": "Greenleaf Community Health is a nonprofit clinic network serving three neighborhoods in San Diego. The Operations Intern helps the clinic manager track appointment no-show rates in Excel, coordinate volunteer schedules, and prepare a monthly report for the board. The role is in person, 15–20 hours per week during the spring semester.",
       "source": "mock",
       "lastCheckedAt": "2026-11-06T00:00:00Z",
@@ -104,20 +324,75 @@
       "title": "Product Marketing Intern",
       "location": "Los Angeles, CA",
       "workMode": "in_person",
-      "compensation": "Unpaid — academic credit",
+      "compensation": {
+        "note": "Unpaid — academic credit"
+      },
       "requiredQualifications": [
-        "Pursuing a degree in Marketing, Communications, or a related field",
-        "Experience with Google Analytics",
-        "Knowledge of SEO",
-        "Strong copywriting portfolio"
+        {
+          "label": "Pursuing a degree in Marketing, Communications, or a related field",
+          "type": "education",
+          "keywords": [
+            "marketing",
+            "communications"
+          ],
+          "trainable": false
+        },
+        {
+          "label": "Experience with Google Analytics",
+          "type": "skill",
+          "keywords": [
+            "google analytics"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Knowledge of SEO",
+          "type": "skill",
+          "keywords": [
+            "seo"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Strong copywriting portfolio",
+          "type": "experience",
+          "keywords": [
+            "copywriting"
+          ],
+          "trainable": true
+        }
       ],
       "preferredQualifications": [
-        "Experience managing social media accounts",
-        "Familiarity with Figma"
+        {
+          "label": "Experience managing social media accounts",
+          "type": "experience",
+          "keywords": [
+            "social media"
+          ],
+          "trainable": true
+        },
+        {
+          "label": "Familiarity with Figma",
+          "type": "skill",
+          "keywords": [
+            "figma"
+          ],
+          "trainable": true
+        }
       ],
-      "applicationDeadline": "2026-11-20",
+      "applicationDeadline": "2026-11-16",
       "applicationUrl": "https://example.com/mock/cobalt/product-marketing-intern",
       "industry": "Education",
+      "careerTags": [
+        "marketing",
+        "education technology"
+      ],
+      "relevantMajors": [
+        "marketing",
+        "communications"
+      ],
+      "experienceLevel": "some",
+      "sponsorshipAvailable": false,
       "description": "Cobalt Learning Labs makes study apps for high-school students. The Product Marketing Intern writes app-store copy, runs SEO experiments on our blog, and reports weekly traffic from Google Analytics.",
       "source": "mock",
       "lastCheckedAt": "2026-11-06T00:00:00Z",
