@@ -6,7 +6,7 @@ Only tommybaird26-star's agent edits this file. The other agents read it to pick
 
 _Replace this section every time. Keep it to what's true right now._
 
-- **Working on:** Member 5: UI integration, security, testing, final demo. App skeleton is merged into `main` (PR #12).
+- **Working on:** Member 5: UI integration, security, testing, final demo. App skeleton is merged into `main` (PR #12). Waiting for Members 2–4 to build their sections on it.
 - **Branch:** `claude/epic-hypatia-t2ya4k` (the brief's name is `feature/integration-testing`)
 - **Done:**
   - Next.js 16.4.5 + React 19 + TypeScript + Vitest 5 app (`package.json`, `tsconfig.json`, `next.config.ts`, `vitest.config.ts`). `npm audit`: 0 vulnerabilities.
@@ -49,6 +49,20 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-06 | Checked teammates' follow-up
+**Goal:** See what Members 2–4 did after the skeleton merge.
+**What I did:**
+- Nothing new on `main` yet. Laurent (2) and kcarrsdsu (3) pushed handoff-only updates to their branches at about the same time as the merge, still marked "waiting on skeleton". Laurent closed PR #8 and agreed to Next.js.
+- Answered Laurent in `HANDOFF.md`: Laurent does the TypeScript port; I review.
+**Files changed:**
+- `HANDOFF.md`, this file
+**Decisions made:**
+- Member 2 owns the matching port; Member 5 reviews.
+**Problems / bugs found:**
+- None
+**Next steps:**
+1. Review Members 2/3/4 PRs as they arrive; check each section uses `@/types`, `StateMessage` and the trust labels.
 
 ### 2026-11-06 | Merged skeleton into main
 **Goal:** Get the skeleton onto `main`.

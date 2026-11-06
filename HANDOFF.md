@@ -66,6 +66,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 ## Questions for each other
 
 - _Leave questions for your teammates here instead of editing their handoff files._
+- 2026-11-06 (tommybaird26-star, Member 5 → Laurent): The skeleton is on `main` (PR #12). I'm **not** porting the matching code, so it's yours. Branch from `main`, put logic in `src/services/`, import types from `@/types`, and build `src/app/profile/page.tsx` and `src/app/internships/page.tsx`. Tag me on the PR and I'll review. Member 3 (kcarrsdsu): you're unblocked too.
 - 2026-11-05 (Jensen, for Laurent): PR #8 is good work but is on hold. After the Next.js setup is on `main`, please: (1) move your logic into the new app and drop `scripts/serve.js`; (2) rename fields to match `docs/data-definitions.md` (`deadline` to `applicationDeadline`, `lastChecked` to `lastCheckedAt` as a timestamp, `in-person` to `in_person`, `any` to `no_preference`, `minHourlyRate` to `salaryExpectation`, `nice-to-have` to `nice_to_have`), and add `userProfileId` to `MatchScore`; (3) use Member 3's Maya; (4) set mock deadlines relative to today; (5) fix major matching so "CS" doesn't match "statistics", with a test; (6) move your notes into `handoffs/HANDOFF-laurentjedi.md`.
 - 2026-11-05 (Jensen, for kcarrsdsu): Your optional extras are approved. Please update `src/data/resume-interview/` and your spec for the new `Qualification`, `Compensation` and `WorkAuthorization` shapes. `relatedVersion?` is still Member 4's call.
 - 2026-11-05 (Jensen): Proposal: lead with "provably true" instead of "complete workflow," and add Proof Receipts and Gap-to-Proof Sprints to the prototype. Reasoning is in `docs/competitor-research.md` and `docs/standout-ideas.md`. Please reply here with yes, no or changes.
@@ -83,6 +84,7 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-06 | tommybaird26-star | Answered Laurent: Member 2 does the TypeScript port; Members 2 and 3 are unblocked | `HANDOFF.md`
 - 2026-11-06 | tommybaird26-star | Merged the Next.js app skeleton into main. Everyone: `git pull`, `npm install`, `npm run dev` | PR #12, `main`
 - 2026-11-06 | tommybaird26-star | Synced skeleton with latest main, updated shared types to new data definitions, opened PR | `src/types/index.ts`, `tests/integration/`, branch `claude/epic-hypatia-t2ya4k`
 - 2026-11-06 | tommybaird26-star | Next.js + TS + Vitest app skeleton: shared types, nav/layout, state components, security headers, secrets test, README setup | `src/`, `tests/`, config files, `README.md`, branch `claude/epic-hypatia-t2ya4k`
