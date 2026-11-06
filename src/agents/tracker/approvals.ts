@@ -26,6 +26,12 @@ export class ApprovalRequiredError extends Error {
   }
 }
 
+export interface ActivitySnapshot {
+  tasks: AgentTask[];
+  approvals: ApprovalRequest[];
+  usedApprovalIds: string[];
+}
+
 const TASK_TRANSITIONS: Readonly<Record<AgentTaskStatus, readonly AgentTaskStatus[]>> = {
   pending: ["in_progress", "failed"],
   in_progress: ["waiting_for_approval", "completed", "failed"],
@@ -189,6 +195,24 @@ export class AgentActivityLog {
         this.used.delete(id);
       }
     }
+  }
+
+  /** Everything in the log, for saving (see storage.ts). */
+  toJSON(): ActivitySnapshot {
+    return {
+      tasks: [...this.tasks.values()],
+      approvals: [...this.approvals.values()],
+      usedApprovalIds: [...this.used],
+    };
+  }
+
+  /** Rebuild a log from `toJSON()` output. */
+  static fromJSON(snapshot: ActivitySnapshot): AgentActivityLog {
+    const log = new AgentActivityLog();
+    for (const t of snapshot.tasks) log.tasks.set(t.id, t);
+    for (const r of snapshot.approvals) log.approvals.set(r.id, r);
+    for (const id of snapshot.usedApprovalIds) log.used.add(id);
+    return log;
   }
 
   // ---------- internals ----------
