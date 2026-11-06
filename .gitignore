@@ -1,6 +1,24 @@
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# secrets: never commit these. Copy .env.example to .env.local instead.
 .env
+.env.*
+!.env.example
+
+# logs and OS files
+npm-debug.log*
+.DS_Store
+coverage/
+.vercel
+
+# Python (kept from the original .gitignore)
 __pycache__/
 *.pyc
 .venv/
-node_modules/
-.DS_Store
