@@ -13,7 +13,9 @@ Each person/agent only edits their own row.
 | Person | Working on now | Status | Branch | Last update |
 | --- | --- | --- | --- | --- |
 | Jensen | | Not started | | |
-| Teammate | | Not started | | |
+| laurentjedi | | Not started | | |
+| kcarrsdsu | | Not started | | |
+| tommybaird26-star | | Not started | | |
 
 Status options: Not started · In progress · Blocked · Ready for review · Done
 
@@ -38,7 +40,7 @@ Status options: Not started · In progress · Blocked · Ready for review · Don
 
 ## Questions for each other
 
-- _Leave questions for your teammate here instead of editing their handoff file._
+- _Leave questions for your teammates here instead of editing their handoff files._
 
 ## Project log
 
@@ -46,4 +48,5 @@ Newest first. One line per finished task or session. Only add lines, never rewri
 
 `YYYY-MM-DD | name | what changed | where (files/branch)`
 
+- 2026-11-05 | Jensen | Updated rules and handoff files for four people | AGENTS.md, CLAUDE.md, README.md, HANDOFF.md, handoffs/
 - 2026-11-05 | Jensen | Created project folder, agent rules, and handoff files | repo root

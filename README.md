@@ -1,15 +1,15 @@
 # Agentic AI Class Project
 
-Shared project folder for our class agentic AI build. Two people, each working with their own AI agent, handing work back and forth through handoff files.
+Shared project folder for our class agentic AI build. Four people, each working with their own AI agent, handing work back and forth through handoff files.
 
 ## Team
 
 | Name | Handoff file | Focus |
 | --- | --- | --- |
 | Jensen | `handoffs/HANDOFF-jensen.md` | |
-| Teammate | `handoffs/HANDOFF-teammate.md` | |
-
-Rename `HANDOFF-teammate.md` to your friend's name and update the table above and `HANDOFF.md`.
+| laurentjedi | `handoffs/HANDOFF-laurentjedi.md` | |
+| kcarrsdsu | `handoffs/HANDOFF-kcarrsdsu.md` | |
+| tommybaird26-star | `handoffs/HANDOFF-tommybaird26-star.md` | |
 
 ## Folder layout
 
@@ -21,7 +21,9 @@ agentic-project/
 ├── HANDOFF.md           ← OVERALL status: who's doing what, project log, decisions
 ├── handoffs/
 │   ├── HANDOFF-jensen.md    ← Jensen's agent writes here
-│   └── HANDOFF-teammate.md  ← teammate's agent writes here
+│   ├── HANDOFF-laurentjedi.md
+│   ├── HANDOFF-kcarrsdsu.md
+│   └── HANDOFF-tommybaird26-star.md  ← each person's agent writes only to its own file
 └── src/                 ← project code goes here
 ```
 
@@ -30,8 +32,8 @@ agentic-project/
 1. **Start of session:** `git pull`, then tell your agent: "Read AGENTS.md and follow it."
 2. **Do the work** on your own branch.
 3. **End of session:** your agent updates your handoff file + `HANDOFF.md` (rules in `AGENTS.md`).
-4. **Commit and push** the handoff files so the other person sees them.
-5. **Picking up from your teammate:** read their handoff file first. Their "Next steps" is your starting point.
+4. **Commit and push** the handoff files so everyone else sees them.
+5. **Picking up from your teammate:** read their handoff file first. Their "Next steps" is your starting point. Your finished work has to be merged into `main` before anyone else's agent will see it.
 
 ## The handoff loop
 
@@ -42,14 +44,14 @@ Agent finishes → updates handoffs/HANDOFF-you.md
         ↓
 Agent updates HANDOFF.md (overall log + status)
         ↓
-You push → teammate pulls
+You push and merge into main → teammates pull
         ↓
-Teammate's agent reads both files → continues the work
+Teammate's agent reads the handoff files → continues the work
 ```
 
 ## Rules for humans
 
-- Don't edit your teammate's handoff file. Leave a note in `HANDOFF.md` → **Questions for each other** instead.
+- Don't edit anyone else's handoff file. Leave a note in `HANDOFF.md` → **Questions for each other** instead.
 - If your agent skips the handoff, tell it: "Update the handoff files per AGENTS.md before we stop."
 - Never commit `.env` or API keys.
 
