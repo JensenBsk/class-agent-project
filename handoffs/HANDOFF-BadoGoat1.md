@@ -6,22 +6,24 @@ Only BadoGoat1's agent edits this file. The other agents read it to pick up wher
 
 _Replace this section every time. Keep it to what's true right now._
 
-- **Working on:** Member 4: application tracker, statuses, next actions, approvals
-- **Branch:** `claude/happy-euler-34uh8h` (brief's name: `feature/tracker-agent`)
-- **Done:** All 4 jobs as framework-free TypeScript in `src/agents/tracker/`, with 57 passing Vitest tests in `tests/tracker/`. How it works: `docs/tracker-agent-design.md`.
-  - Job 1 `tracker.ts`: `ApplicationTracker` (add/get/list/edit/changeStatus/remove/reset), per-user isolation, no duplicates
-  - Job 2 `status.ts`: `ALLOWED_TRANSITIONS` for the 9 statuses; auto-sets `dateApplied`, `followUpDate`, `interviewDate`
-  - Job 3 `nextActions.ts`: `recommendNextAction`, `listNextActions`, `buildReminders` (in-app only)
-  - Job 4 `approvals.ts`: `AgentActivityLog`; `runIfApproved` runs an action only if approved, once, for the right draft version
-- **Half-done / in progress:** Nothing. No UI yet, and nothing is wired into the Next.js app because the skeleton isn't on `main`.
-- **Broken or known bugs:** None known. Storage is in memory only (lost on reload).
-- **How to run tests now:** no `package.json` in the repo yet, so run `npx vitest run tests/tracker` once Member 5 adds Vitest. Type-checks under `strict`.
+- **Working on:** Member 4: tracker page + home "Next action" card
+- **Branch:** `claude/happy-euler-34uh8h` (restarted from `main` after PR #11 merged)
+- **Done:**
+  - Logic (merged in PR #11): `src/agents/tracker/` tracker, statuses, next actions, approvals. `types.ts` now re-exports the shared `@/types` (adds only Member 3's optional `relatedVersion`).
+  - New: `storage.ts` (localStorage save/load), `useTracker.ts` (React hook), `followUp.ts` (follow-up email template using only tracker fields).
+  - `/tracker` page (`src/app/tracker/page.tsx` + `src/components/tracker/*`): next-action list, 7-day reminders, approvals panel (draft follow-up → Approve and copy / Reject; nothing is ever sent), application cards (only allowed status moves, edit details, remove with confirm), add internship from mock list, activity record, delete-all with confirm. Loading, empty, error (corrupt data → Start fresh), success and "storage blocked" states.
+  - Home "Next action" card (`src/app/page.tsx`) shows the tracker's top recommendation via `HomeNextAction`, else Member 5's original empty state.
+- **Verified:** `npm test` 86 pass (incl. 8 UI tests in `tests/tracker/TrackerView.test.tsx`, storage tests), `npm run typecheck` clean, `npm run build` clean. Drove the real app in Chromium at 1280px (light) and 390px (dark): add → statuses → draft → approve copies to clipboard; no console errors, no horizontal scroll.
+- **Half-done / in progress:** Nothing.
+- **Broken or known bugs / limits:**
+  - Uses Member 3's mock internships (`src/data/resume-interview/mock-internships.json`) and Maya's mock id via `src/components/tracker/demoData.ts`. Swap for Member 2's profile + ranked list when ready.
+  - Data is per-browser (localStorage), single demo user.
+  - Next-action text shows dates as `YYYY-MM-DD`.
 - **Next steps (specific enough to pick up cold):**
-  1. Once Member 5's Next.js skeleton is on `main`, merge it in; switch `src/agents/tracker/types.ts` to the shared types file if one exists.
-  2. Build the tracker page (list + status dropdown using `ALLOWED_TRANSITIONS` + next-action list from `listNextActions`) and an approvals panel (`listPendingApprovals`), or hand to Member 5.
-  3. Pick storage (localStorage is simplest) behind the same class methods.
-  4. Optional: status history / undo.
-- **Needs from teammates:** Member 5: app skeleton + Vitest. Member 3: use `requestApproval` with `relatedVersion` before finalizing drafts.
+  1. When Member 2's internships page lands, add an "Add to tracker" button there that calls `useTracker().update(({tracker}) => tracker.add(userId, internship))`.
+  2. Replace `DEMO_USER_ID`/`TRACKABLE_INTERNSHIPS` in `demoData.ts` with the real profile and ranked internships.
+  3. Member 3 can reuse `AgentActivityLog.requestApproval`/`runIfApproved` + `ApprovalsPanel` pattern for draft approval.
+- **Needs from teammates:** Member 2: internship list/profile hook-up. Member 5: OK with my edit to the home page "Next action" card (it was marked for Member 4).
 
 ## Session log
 
@@ -41,6 +43,26 @@ Newest entry at the top. Copy the template for each new entry.
 **Next steps:**
 1.
 -->
+
+### 2026-11-06 | Tracker page and home next action
+**Goal:** Build the `/tracker` page on Member 5's Next.js skeleton
+**What I did:**
+- Restarted branch from `main` (PR #11 merged); switched `types.ts` to shared `@/types`
+- Added localStorage persistence, `useTracker` hook, follow-up email template
+- Built `/tracker` UI and home "Next action" card; 22 new tests (86 total pass); checked in a real browser
+**Files changed:**
+- `src/agents/tracker/{types,tracker,approvals,utils,index}.ts`: shared types, toJSON/fromJSON, date helpers
+- `src/agents/tracker/{storage,useTracker,followUp}.ts`: new
+- `src/components/tracker/*`: new (TrackerView, ApplicationCard, ApprovalsPanel, ConfirmButton, NextActionsList, HomeNextAction, demoData, tracker.module.css)
+- `src/app/tracker/page.tsx`, `src/app/page.tsx` (Next action card only)
+- `tests/tracker/{storage.test.ts,TrackerView.test.tsx}`: new
+**Decisions made:**
+- Follow-up emails: the agent drafts, student approves, app only copies to clipboard. Never sends.
+- Didn't add `@testing-library/user-event` (would change shared `package.json`); used `fireEvent`
+**Problems / bugs found:**
+- None open. See limits in Current status.
+**Next steps:**
+1. See "Next steps" in Current status above
 
 ### 2026-11-06 | Built tracker, statuses, next actions, approvals
 **Goal:** Do all 4 Member 4 jobs now that the stack is decided (Next.js + TypeScript + Vitest)

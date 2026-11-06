@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { StateMessage } from "@/components/StateMessage";
+import { HomeNextAction } from "@/components/tracker/HomeNextAction";
 import { SECTIONS } from "@/lib/sections";
 
 export default function HomePage() {
@@ -13,18 +14,22 @@ export default function HomePage() {
 
       <section aria-labelledby="next-action-heading" className="card">
         <h2 id="next-action-heading">Next action</h2>
-        {/* Member 4: replace with the next-action engine's recommendation. */}
-        <StateMessage
-          variant="empty"
-          title="Start by creating your profile"
-          action={
-            <Link className="button" href="/profile">
-              Create profile
-            </Link>
+        {/* Member 4: the tracker's top recommendation, or the fallback below if nothing is tracked yet. */}
+        <HomeNextAction
+          fallback={
+            <StateMessage
+              variant="empty"
+              title="Start by creating your profile"
+              action={
+                <Link className="button" href="/profile">
+                  Create profile
+                </Link>
+              }
+            >
+              Once we know your skills and preferences, we can find and rank internships for you.
+            </StateMessage>
           }
-        >
-          Once we know your skills and preferences, we can find and rank internships for you.
-        </StateMessage>
+        />
       </section>
 
       <section aria-labelledby="steps-heading">

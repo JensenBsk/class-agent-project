@@ -173,6 +173,18 @@ export class ApplicationTracker {
     return removed;
   }
 
+  /** Every stored application, for saving (see storage.ts). */
+  toJSON(): Application[] {
+    return [...this.apps.values()];
+  }
+
+  /** Rebuild a tracker from `toJSON()` output. */
+  static fromJSON(apps: readonly Application[]): ApplicationTracker {
+    const tracker = new ApplicationTracker();
+    for (const app of apps) tracker.apps.set(app.id, app);
+    return tracker;
+  }
+
   private require(userProfileId: string, id: string): Application {
     const app = this.get(userProfileId, id);
     if (!app) throw new ApplicationNotFoundError(id);
